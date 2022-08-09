@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cadmium_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mistbornmod:cadmium_nugget"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:cadmium_ingot"
+  }
+}

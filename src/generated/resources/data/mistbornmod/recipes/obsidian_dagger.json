@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "O",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:obsidian_dagger"
+  }
+}

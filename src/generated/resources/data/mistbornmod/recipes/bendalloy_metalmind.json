@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/bendalloy"
+    },
+    "N": {
+      "tag": "forge:nuggets/bendalloy"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:bendalloy_metalmind"
+  }
+}

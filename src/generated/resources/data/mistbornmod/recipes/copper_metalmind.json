@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:copper_ingot"
+    },
+    "N": {
+      "tag": "forge:nuggets/copper"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:copper_metalmind"
+  }
+}

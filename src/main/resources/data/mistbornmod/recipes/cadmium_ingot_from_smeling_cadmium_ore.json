@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "cadmium_ingot",
+  "ingredient": {
+    "item": "mistbornmod:raw_cadmium"
+  },
+  "result": "mistbornmod:cadmium_ingot",
+  "experience": 1.75,
+  "cookingtime": 200
+}

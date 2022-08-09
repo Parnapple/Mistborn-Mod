@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:bendalloy_ingot"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:bendalloy_nugget",
+    "count": 9
+  }
+}

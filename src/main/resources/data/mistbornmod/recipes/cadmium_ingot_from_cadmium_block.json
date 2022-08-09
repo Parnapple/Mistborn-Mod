@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:cadmium_block"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:cadmium_ingot",
+    "count": 9
+  }
+}

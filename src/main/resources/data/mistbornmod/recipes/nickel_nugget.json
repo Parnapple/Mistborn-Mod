@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:nickel_ingot"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:nickel_nugget",
+    "count": 9
+  }
+}

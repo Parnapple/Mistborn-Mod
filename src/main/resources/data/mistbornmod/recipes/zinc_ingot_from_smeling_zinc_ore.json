@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "zinc_ingot",
+  "ingredient": {
+    "item": "mistbornmod:raw_zinc"
+  },
+  "result": "mistbornmod:zinc_ingot",
+  "experience": 0.75,
+  "cookingtime": 200
+}

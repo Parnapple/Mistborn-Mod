@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/aluminum"
+    },
+    "N": {
+      "tag": "forge:nuggets/aluminum"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:aluminum_metalmind"
+  }
+}

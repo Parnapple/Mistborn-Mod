@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "nickel_ingot",
+  "ingredient": {
+    "item": "mistbornmod:raw_nickel"
+  },
+  "result": "mistbornmod:nickel_ingot",
+  "experience": 0.75,
+  "cookingtime": 200
+}

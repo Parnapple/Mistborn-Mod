@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "group": "tin_ingot",
+  "ingredient": {
+    "item": "mistbornmod:raw_tin"
+  },
+  "result": "mistbornmod:tin_ingot",
+  "experience": 0.5,
+  "cookingtime": 100
+}

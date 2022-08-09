@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:pewter_block"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:pewter_ingot",
+    "count": 9
+  }
+}

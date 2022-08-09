@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chromium_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mistbornmod:chromium_nugget"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:chromium_ingot"
+  }
+}

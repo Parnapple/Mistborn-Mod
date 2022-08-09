@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/pewter"
+    },
+    "N": {
+      "tag": "forge:nuggets/pewter"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:pewter_metalmind"
+  }
+}

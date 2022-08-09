@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:electrum_ingot"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:electrum_nugget",
+    "count": 9
+  }
+}

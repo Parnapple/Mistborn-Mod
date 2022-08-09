@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/electrum"
+    },
+    "N": {
+      "tag": "forge:nuggets/electrum"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:electrum_metalmind"
+  }
+}

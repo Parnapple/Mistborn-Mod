@@ -1,0 +1,35 @@
+{
+  "type": "mistbornmod:metallurgy_recipe",
+  "ingredients": [
+    {
+      "item": "mistbornmod:raw_tin"
+    },
+    {
+      "item": "mistbornmod:raw_tin"
+    },
+    {
+      "item": "mistbornmod:raw_tin"
+    },
+    {
+      "item": "mistbornmod:raw_tin"
+    },
+    {
+      "item": "mistbornmod:raw_tin"
+    },
+    {
+      "item": "mistbornmod:raw_tin"
+    },
+    {
+      "item": "mistbornmod:raw_tin"
+    },
+    {
+      "item": "mistbornmod:raw_tin"
+    },
+    {
+      "item": "mistbornmod:raw_lead"
+    }
+  ],
+  "output": {
+    "item": "mistbornmod:pewter_ingot"
+  }
+}

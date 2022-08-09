@@ -1,0 +1,35 @@
+{
+  "type": "mistbornmod:metallurgy_recipe",
+  "ingredients": [
+    {
+      "item": "mistbornmod:raw_silver"
+    },
+    {
+      "item": "mistbornmod:raw_silver"
+    },
+    {
+      "item": "mistbornmod:raw_silver"
+    },
+    {
+      "item": "mistbornmod:raw_silver"
+    },
+    {
+      "item": "mistbornmod:raw_silver"
+    },
+    {
+      "item": "minecraft:raw_gold"
+    },
+    {
+      "item": "minecraft:raw_gold"
+    },
+    {
+      "item": "minecraft:raw_gold"
+    },
+    {
+      "item": "minecraft:raw_gold"
+    }
+  ],
+  "output": {
+    "item": "mistbornmod:electrum_ingot"
+  }
+}

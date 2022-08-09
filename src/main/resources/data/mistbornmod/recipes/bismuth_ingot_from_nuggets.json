@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bismuth_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mistbornmod:bismuth_nugget"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:bismuth_ingot"
+  }
+}

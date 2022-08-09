@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/chromium"
+    },
+    "N": {
+      "tag": "forge:nuggets/chromium"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:chromium_metalmind"
+  }
+}

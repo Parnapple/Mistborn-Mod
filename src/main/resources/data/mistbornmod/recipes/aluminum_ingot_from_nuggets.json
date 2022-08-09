@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "aluminum_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mistbornmod:aluminum_nugget"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:aluminum_ingot"
+  }
+}

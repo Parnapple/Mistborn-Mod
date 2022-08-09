@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:silver_block"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:silver_ingot",
+    "count": 9
+  }
+}

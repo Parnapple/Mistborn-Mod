@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "group": "chromium_ingot",
+  "ingredient": {
+    "item": "mistbornmod:raw_chromium"
+  },
+  "result": "mistbornmod:chromium_ingot",
+  "experience": 0.75,
+  "cookingtime": 100
+}

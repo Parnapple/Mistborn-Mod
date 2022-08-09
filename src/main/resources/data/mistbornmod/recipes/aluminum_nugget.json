@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:aluminum_ingot"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:aluminum_nugget",
+    "count": 9
+  }
+}

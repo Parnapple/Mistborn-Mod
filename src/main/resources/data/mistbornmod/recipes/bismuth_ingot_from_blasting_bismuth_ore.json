@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "group": "bismuth_ingot",
+  "ingredient": {
+    "item": "mistbornmod:raw_bismuth"
+  },
+  "result": "mistbornmod:bismuth_ingot",
+  "experience": 1.75,
+  "cookingtime": 100
+}

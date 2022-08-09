@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "alumina",
+  "ingredient": {
+    "item": "mistbornmod:raw_bauxite"
+  },
+  "result": "mistbornmod:alumina",
+  "experience": 0.5,
+  "cookingtime": 200
+}

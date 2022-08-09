@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "mistbornmod:block/metallurgy_furnace_top",
+    "bottom": "mistbornmod:block/metallurgy_furnace_bottom",
+    "front": "mistbornmod:block/metallurgy_furnace_front",
+    "side": "mistbornmod:block/metallurgy_furnace_side"
+  }
+}

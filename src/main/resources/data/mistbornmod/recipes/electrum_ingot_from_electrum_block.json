@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:electrum_block"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:electrum_ingot",
+    "count": 9
+  }
+}

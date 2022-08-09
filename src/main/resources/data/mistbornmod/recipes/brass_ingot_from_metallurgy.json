@@ -1,0 +1,35 @@
+{
+  "type": "mistbornmod:metallurgy_recipe",
+  "ingredients": [
+    {
+      "item": "mistbornmod:raw_zinc"
+    },
+    {
+      "item": "mistbornmod:raw_zinc"
+    },
+    {
+      "item": "mistbornmod:raw_zinc"
+    },
+    {
+      "item": "minecraft:raw_copper"
+    },
+    {
+      "item": "minecraft:raw_copper"
+    },
+    {
+      "item": "minecraft:raw_copper"
+    },
+    {
+      "item": "minecraft:raw_copper"
+    },
+    {
+      "item": "minecraft:raw_copper"
+    },
+    {
+      "item": "minecraft:raw_copper"
+    }
+  ],
+  "output": {
+    "item": "mistbornmod:brass_ingot"
+  }
+}

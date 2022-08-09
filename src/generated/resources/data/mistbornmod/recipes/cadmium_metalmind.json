@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/cadmium"
+    },
+    "N": {
+      "tag": "forge:nuggets/cadmium"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:cadmium_metalmind"
+  }
+}

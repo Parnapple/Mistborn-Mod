@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "nicrosil_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mistbornmod:nicrosil_nugget"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:nicrosil_ingot"
+  }
+}

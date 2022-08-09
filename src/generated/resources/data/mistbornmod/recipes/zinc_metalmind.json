@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/zinc"
+    },
+    "N": {
+      "tag": "forge:nuggets/zinc"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:zinc_metalmind"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bendalloy_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mistbornmod:bendalloy_nugget"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:bendalloy_ingot"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "bismuth_ingot",
+  "ingredient": {
+    "item": "mistbornmod:raw_bismuth"
+  },
+  "result": "mistbornmod:bismuth_ingot",
+  "experience": 0.75,
+  "cookingtime": 200
+}

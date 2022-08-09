@@ -1,0 +1,35 @@
+{
+  "type": "mistbornmod:metallurgy_recipe",
+  "ingredients": [
+    {
+      "item": "mistbornmod:raw_tin"
+    },
+    {
+      "item": "mistbornmod:raw_lead"
+    },
+    {
+      "item": "mistbornmod:raw_lead"
+    },
+    {
+      "item": "mistbornmod:raw_cadmium"
+    },
+    {
+      "item": "mistbornmod:raw_bismuth"
+    },
+    {
+      "item": "mistbornmod:raw_bismuth"
+    },
+    {
+      "item": "mistbornmod:raw_bismuth"
+    },
+    {
+      "item": "mistbornmod:raw_bismuth"
+    },
+    {
+      "item": "mistbornmod:raw_bismuth"
+    }
+  ],
+  "output": {
+    "item": "mistbornmod:bendalloy_ingot"
+  }
+}

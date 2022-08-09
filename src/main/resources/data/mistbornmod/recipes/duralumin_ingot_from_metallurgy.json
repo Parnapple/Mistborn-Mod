@@ -1,0 +1,35 @@
+{
+  "type": "mistbornmod:metallurgy_recipe",
+  "ingredients": [
+    {
+      "item": "mistbornmod:alumina"
+    },
+    {
+      "item": "mistbornmod:alumina"
+    },
+    {
+      "item": "mistbornmod:alumina"
+    },
+    {
+      "item": "mistbornmod:alumina"
+    },
+    {
+      "item": "mistbornmod:alumina"
+    },
+    {
+      "item": "mistbornmod:alumina"
+    },
+    {
+      "item": "mistbornmod:alumina"
+    },
+    {
+      "item": "mistbornmod:alumina"
+    },
+    {
+      "item": "minecraft:raw_copper"
+    }
+  ],
+  "output": {
+    "item": "mistbornmod:duralumin_ingot"
+  }
+}

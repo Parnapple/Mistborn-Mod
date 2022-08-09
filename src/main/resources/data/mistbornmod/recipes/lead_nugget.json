@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:lead_ingot"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:lead_nugget",
+    "count": 9
+  }
+}

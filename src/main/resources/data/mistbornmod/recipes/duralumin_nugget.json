@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:duralumin_ingot"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:duralumin_nugget",
+    "count": 9
+  }
+}

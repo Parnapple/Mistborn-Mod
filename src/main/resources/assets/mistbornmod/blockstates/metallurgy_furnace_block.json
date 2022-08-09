@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "mistbornmod:block/metallurgy_furnace_block",
+      "y": 90
+    },
+
+    "facing=north": {
+      "model": "mistbornmod:block/metallurgy_furnace_block"
+    },
+
+    "facing=south": {
+      "model": "mistbornmod:block/metallurgy_furnace_block",
+      "y": 180
+    },
+
+    "facing=west": {
+      "model": "mistbornmod:block/metallurgy_furnace_block",
+      "y": 270
+    }
+  }
+}

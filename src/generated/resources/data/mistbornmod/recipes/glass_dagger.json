@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "G": {
+      "tag": "forge:glass"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:glass_dagger"
+  }
+}

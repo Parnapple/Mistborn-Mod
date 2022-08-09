@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mistbornmod:bismuth_ingot"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:bismuth_nugget",
+    "count": 9
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "duralumin_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mistbornmod:duralumin_nugget"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:duralumin_ingot"
+  }
+}

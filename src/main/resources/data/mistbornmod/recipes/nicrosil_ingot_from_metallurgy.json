@@ -1,0 +1,35 @@
+{
+  "type": "mistbornmod:metallurgy_recipe",
+  "ingredients": [
+    {
+      "item": "mistbornmod:raw_chromium"
+    },
+    {
+      "item": "mistbornmod:raw_chromium"
+    },
+    {
+      "item": "mistbornmod:raw_nickel"
+    },
+    {
+      "item": "mistbornmod:raw_nickel"
+    },
+    {
+      "item": "mistbornmod:raw_nickel"
+    },
+    {
+      "item": "mistbornmod:raw_nickel"
+    },
+    {
+      "item": "mistbornmod:raw_nickel"
+    },
+    {
+      "item": "mistbornmod:raw_nickel"
+    },
+    {
+      "item": "mistbornmod:raw_nickel"
+    }
+  ],
+  "output": {
+    "item": "mistbornmod:nicrosil_ingot"
+  }
+}

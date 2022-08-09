@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/tin"
+    },
+    "N": {
+      "tag": "forge:nuggets/tin"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:tin_metalmind"
+  }
+}

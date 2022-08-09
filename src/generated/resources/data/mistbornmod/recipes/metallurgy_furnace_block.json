@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SLS",
+    "SFS",
+    "BBB"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:ingots/steel"
+    },
+    "B": {
+      "item": "minecraft:polished_blackstone"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    },
+    "F": {
+      "item": "minecraft:blast_furnace"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:metallurgy_furnace_block"
+  }
+}
