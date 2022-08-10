@@ -3,12 +3,12 @@ package Parnapple.mistbornmod.block.container;
 import Parnapple.mistbornmod.MistbornBaseMod;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.common.extensions.IForgeContainerType;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fmllegacy.RegistryObject;
-import net.minecraftforge.fmllegacy.network.IContainerFactory;
+import net.minecraftforge.network.IContainerFactory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModContainers {
 
@@ -20,7 +20,7 @@ public class ModContainers {
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory,
                                                                                                  String name) {
-        return CONTAINERS.register(name, () -> IForgeContainerType.create(factory));
+        return CONTAINERS.register(name, () -> IForgeMenuType.create(factory));
     }
 
 

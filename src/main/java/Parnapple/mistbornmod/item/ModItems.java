@@ -9,9 +9,9 @@ import Parnapple.mistbornmod.util.Metal;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -158,7 +158,7 @@ public class ModItems {
     public static final RegistryObject<Item> ELECTRUM_NUGGET = ITEMS.register("electrum_nugget",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
 
-    public static final RegistryObject<Item>  CHROMIUM_INGOT = ITEMS.register("chromium_ingot",
+    public static final RegistryObject<Item> CHROMIUM_INGOT = ITEMS.register("chromium_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
 
     public static final RegistryObject<Item> CHROMIUM_NUGGET = ITEMS.register("chromium_nugget",
