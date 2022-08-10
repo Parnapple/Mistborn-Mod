@@ -114,13 +114,12 @@ public class MetallurgyFurnaceBlockEntity extends BlockEntity implements MenuPro
 
 
     @Override
-    public CompoundTag save(CompoundTag pTag) {
-        super.save(pTag);
+    public void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", this.itemHandler.serializeNBT());
         pTag.putInt("metallurgy_furnace.progress", progress);
         pTag.putInt("metallurgy_furnace.fuelTime", fuelTime);
         pTag.putInt("metallurgy_furnace.maxFuelTime", maxFuelTime);
-        return pTag;
+        super.saveAdditional(pTag);
     }
 
 
@@ -228,9 +227,6 @@ public class MetallurgyFurnaceBlockEntity extends BlockEntity implements MenuPro
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inv) {
         return inv.getItem(10).getMaxStackSize() >= inv.getItem(10).getCount()+9;
     }
-
-
-
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());

@@ -4,7 +4,7 @@ import Parnapple.mistbornmod.block.ModBlocks;
 import Parnapple.mistbornmod.block.container.ModContainers;
 import Parnapple.mistbornmod.crafting.ModRecipeSerializers;
 import Parnapple.mistbornmod.event.FeruchemistCapEvents;
-import Parnapple.mistbornmod.world.OreGeneration;
+import Parnapple.mistbornmod.world.gen.OreGeneration;
 import Parnapple.mistbornmod.block.entity.ModBlockEntityTypes;
 import Parnapple.mistbornmod.capability.ModCapabilities;
 import Parnapple.mistbornmod.command.FeruchemyArgumentType;
@@ -73,7 +73,7 @@ public class MistbornBaseMod
             VillagerProfessions.registerMetallurgistPOI();
         });
 
-        event.enqueueWork(OreGeneration::registerOres);
+        //event.enqueueWork(OreGeneration::registerOres);
 
         ArgumentTypes.register("feruchemy_argument", FeruchemyArgumentType.class, new EmptyArgumentSerializer<>(() -> FeruchemyArgumentType.INSTANCE));
     }

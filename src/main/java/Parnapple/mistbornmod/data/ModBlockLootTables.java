@@ -4,7 +4,7 @@ import Parnapple.mistbornmod.block.ModBlocks;
 import Parnapple.mistbornmod.item.ModItems;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockLootTables extends BlockLoot {
     @Override

@@ -75,9 +75,4 @@ public enum ModItemTier implements Tier {
         return repairIngredient.get();
     }
 
-    @Nullable
-    @Override
-    public Tag<Block> getTag() {
-        return Tier.super.getTag();
-    }
 }
