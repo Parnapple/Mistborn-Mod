@@ -25,9 +25,10 @@ Checking a metalmind's charge can be done by hovering over it in the inventory a
 
 Un-keyed metalminds
 ~~~~~~~~~~~~~~~~~~
-By default, metalminds are keyed to the user, so only the person who fills it can use it. 
 
-To make a metalmind that anyone with the matching feruchemal power can use, you can make an unkeyed metalmind simply by filling an aluminum-mind* while using it. If the metalmind has already been keyed to you, it can't be unkeyed, so you need to start with an un-used metalmind. 
+By default, metalminds are keyed to the user, so only the person who fills it can use it.
+
+To make a metalmind that anyone with the matching feruchemal power can use, you can make an unkeyed metalmind simply by filling an aluminum-mind* while using it. If the metalmind has already been keyed to you, it can't be unkeyed, so you need to start with an un-used metalmind.
 
 You can check if a metalmind is unkeyed the same way you check its charge. If the UUID field is blank, it is unkeyed
 
@@ -37,6 +38,6 @@ You can also make a metalmind that anyone can use, even if they aren't a feruche
 
 First, craft a nicrosil-lined metalmind using an empty metalmind, 4 nicrosil ingots, and 2 nicrosil nuggets. Any charge stored in the original metalmind will be lost when crafting into a nicrosil-lined metalmind, so make a new, empty metalmind for this.
 
-Filling the metalmind can be done normally, and as long as nicrosil is one of your feruchemal powers, it will fill up the 'Investiture' charge alongside the normal charge. When an none feruchemist uses this metalmind, the 'Investiture' charge will go down. It can be used by non-feruchemists until the 'Investiture' charge runs out. 
+Filling the metalmind can be done normally, and as long as nicrosil is one of your feruchemal powers, it will fill up the 'Investiture' charge alongside the normal charge. When an none feruchemist uses this metalmind, the 'Investiture' charge will go down. It can be used by non-feruchemists until the 'Investiture' charge runs out.
 
 For anyone to be able to use it, you will also have to make it unkeyed(just start filling an aluminum mind before you start filling it).
