@@ -25,6 +25,7 @@ Checking a metalmind's charge can be done by hovering over it in the inventory a
 
 Un-keyed metalminds
 ~~~~~~~~~~~~~~~~~~
+
 By default, metalminds are keyed to the user, so only the person who fills it can use it.
 
 To make a metalmind that anyone with the matching feruchemal power can use, you can make an unkeyed metalmind simply by filling an aluminum-mind* while using it. If the metalmind has already been keyed to you, it can't be unkeyed, so you need to start with an un-used metalmind.
