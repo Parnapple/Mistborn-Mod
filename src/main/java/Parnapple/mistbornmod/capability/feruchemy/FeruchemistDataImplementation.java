@@ -1,4 +1,4 @@
-package Parnapple.mistbornmod.capability;
+package Parnapple.mistbornmod.capability.feruchemy;
 
 import Parnapple.mistbornmod.util.Metal;
 import net.minecraft.nbt.CompoundTag;

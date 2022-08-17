@@ -1,8 +1,9 @@
-package Parnapple.mistbornmod.capability;
+package Parnapple.mistbornmod.capability.feruchemy;
 
 import Parnapple.mistbornmod.MistbornBaseMod;
 
 
+import Parnapple.mistbornmod.capability.ModCapabilities;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;

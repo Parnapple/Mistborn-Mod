@@ -1,7 +1,8 @@
 package Parnapple.mistbornmod.command;
 
-import Parnapple.mistbornmod.capability.feruchemy.IFeruchemistData;
 import Parnapple.mistbornmod.capability.ModCapabilities;
+import Parnapple.mistbornmod.capability.allomancy.IAllomancerData;
+import Parnapple.mistbornmod.capability.feruchemy.IFeruchemistData;
 import Parnapple.mistbornmod.util.Metal;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -15,14 +16,14 @@ import net.minecraft.server.level.ServerPlayer;
 
 import java.util.function.Predicate;
 
-public class FeruchemyCommand {
+public class AllomancyCommand {
 
     private static Predicate<CommandSourceStack> permissions(int level) {
         return (player) -> player.hasPermission(level);
     }
 
-    public FeruchemyCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
-        LiteralArgumentBuilder<CommandSourceStack> root = Commands.literal("feruchemy").requires(permissions(0));
+    public AllomancyCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
+        LiteralArgumentBuilder<CommandSourceStack> root = Commands.literal("allomancy").requires(permissions(0));
 
         root.then(Commands.literal("clear").requires(permissions(2))
                 .executes((command) -> {
@@ -56,9 +57,9 @@ public class FeruchemyCommand {
 
     private int clearPowers(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer player = source.getPlayerOrException();
-        player.getCapability(ModCapabilities.FERUCHEMY_INSTANCE).ifPresent(IFeruchemistData::removeAllPowers);
+        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(IAllomancerData::removeAllPowers);
 
-        source.sendSuccess(new TranslatableComponent("commands.mistbornmod.clear_feruchemy"), true);
+        source.sendSuccess(new TranslatableComponent("commands.mistbornmod.clear_allomancy"), true);
 
         return 1;
     }
@@ -67,12 +68,12 @@ public class FeruchemyCommand {
         ServerPlayer player = context.getSource().getPlayerOrException();
         String type = context.getArgument("type", String.class);
 
-        player.getCapability(ModCapabilities.FERUCHEMY_INSTANCE).ifPresent(data -> {
+        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
             Metal metal = Metal.valueOf(type.toUpperCase());
             data.removePower(metal);
         });
 
-        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.added_feruchemy");
+        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.added_allomancy");
         TextComponent message = new TextComponent(messageBase.getString() + type);
 
         context.getSource().sendSuccess(message, true);
@@ -82,9 +83,9 @@ public class FeruchemyCommand {
 
     private int givePowers(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer player = source.getPlayerOrException();
-        player.getCapability(ModCapabilities.FERUCHEMY_INSTANCE).ifPresent(IFeruchemistData::giveAllPowers);
+        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(IAllomancerData::giveAllPowers);
 
-        source.sendSuccess(new TranslatableComponent("commands.mistbornmod.add_all_feruchemy"), true);
+        source.sendSuccess(new TranslatableComponent("commands.mistbornmod.add_all_allomancy"), true);
 
         return 1;
     }
@@ -93,12 +94,12 @@ public class FeruchemyCommand {
         ServerPlayer player = context.getSource().getPlayerOrException();
         String type = context.getArgument("type", String.class);
 
-        player.getCapability(ModCapabilities.FERUCHEMY_INSTANCE).ifPresent(data -> {
+        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
             Metal metal = Metal.valueOf(type.toUpperCase());
             data.givePower(metal);
         });
 
-        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.added_feruchemy");
+        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.added_allomancy");
         TextComponent message = new TextComponent(messageBase.getString() + type);
 
         context.getSource().sendSuccess(message, true);
@@ -111,13 +112,13 @@ public class FeruchemyCommand {
 
         StringBuilder powers = new StringBuilder();
 
-        player.getCapability(ModCapabilities.FERUCHEMY_INSTANCE).ifPresent(data -> {
+        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
             for(Metal metal: data.getPowers()) {
                powers.append(metal.getName()).append(", ");
             }
         });
 
-        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.get_feruchemy_powers");
+        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.get_allomancy_powers");
         TextComponent message = new TextComponent(messageBase.getString() + powers);
 
         source.sendSuccess(message, true);

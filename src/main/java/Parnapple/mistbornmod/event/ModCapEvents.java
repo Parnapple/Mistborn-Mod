@@ -1,6 +1,7 @@
 package Parnapple.mistbornmod.event;
 
-import Parnapple.mistbornmod.capability.FeruchemyCapabilityProvider;
+import Parnapple.mistbornmod.capability.allomancy.AllomancyCapabilityProvider;
+import Parnapple.mistbornmod.capability.feruchemy.FeruchemyCapabilityProvider;
 import Parnapple.mistbornmod.capability.ModCapabilities;
 import Parnapple.mistbornmod.util.Metal;
 import net.minecraft.world.entity.Entity;
@@ -10,7 +11,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 
-public class FeruchemistCapEvents {
+public class ModCapEvents {
 
     @SubscribeEvent
      public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
@@ -18,6 +19,10 @@ public class FeruchemistCapEvents {
              if (!event.getObject().getCapability(ModCapabilities.FERUCHEMY_INSTANCE).isPresent()) {
                  // The player does not already have this capability so we need to add the capability provider here
                  event.addCapability(FeruchemyCapabilityProvider.IDENTIFIER, new FeruchemyCapabilityProvider());
+             }
+             if (!event.getObject().getCapability(ModCapabilities.ALLOMANCY_INSTANCE).isPresent()) {
+                 // The player does not already have this capability so we need to add the capability provider here
+                 event.addCapability(AllomancyCapabilityProvider.IDENTIFIER, new AllomancyCapabilityProvider());
              }
          }
      }
@@ -41,6 +46,19 @@ public class FeruchemistCapEvents {
             });
 
             event.getOriginal().getCapability(ModCapabilities.FERUCHEMY_INSTANCE).invalidate();
+            event.getOriginal().invalidateCaps();
+
+            player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
+                event.getOriginal().getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(oldData -> {
+                    for(Metal metal: Metal.values()) {
+                        if(oldData.hasPower(metal)) {
+                            data.givePower(metal);
+                        }
+                    }
+                });
+            });
+
+            event.getOriginal().getCapability(ModCapabilities.ALLOMANCY_INSTANCE).invalidate();
             event.getOriginal().invalidateCaps();
 
         }
