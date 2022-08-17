@@ -3,14 +3,14 @@ package Parnapple.mistbornmod;
 import Parnapple.mistbornmod.block.ModBlocks;
 import Parnapple.mistbornmod.block.container.ModContainers;
 import Parnapple.mistbornmod.crafting.ModRecipeSerializers;
-import Parnapple.mistbornmod.event.FeruchemistCapEvents;
-import Parnapple.mistbornmod.world.gen.OreGeneration;
+import Parnapple.mistbornmod.event.ModCapEvents;
 import Parnapple.mistbornmod.block.entity.ModBlockEntityTypes;
 import Parnapple.mistbornmod.capability.ModCapabilities;
-import Parnapple.mistbornmod.command.FeruchemyArgumentType;
+import Parnapple.mistbornmod.command.MetalArgumentType;
 import Parnapple.mistbornmod.effect.ModEffects;
 import Parnapple.mistbornmod.entity.villager.VillagerProfessions;
 import Parnapple.mistbornmod.item.ModItems;
+import Parnapple.mistbornmod.network.ModPackets;
 import net.minecraft.commands.synchronization.ArgumentTypes;
 import net.minecraft.commands.synchronization.EmptyArgumentSerializer;
 import net.minecraftforge.common.MinecraftForge;
@@ -56,7 +56,7 @@ public class MistbornBaseMod
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 */
-        MinecraftForge.EVENT_BUS.register(FeruchemistCapEvents.class);
+        MinecraftForge.EVENT_BUS.register(ModCapEvents.class);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -69,13 +69,14 @@ public class MistbornBaseMod
     {
         // some preinit code
         event.enqueueWork(() -> {
+            ModPackets.register();
             VillagerProfessions.fillTradeData();
             VillagerProfessions.registerMetallurgistPOI();
         });
 
         //event.enqueueWork(OreGeneration::registerOres);
 
-        ArgumentTypes.register("feruchemy_argument", FeruchemyArgumentType.class, new EmptyArgumentSerializer<>(() -> FeruchemyArgumentType.INSTANCE));
+        ArgumentTypes.register("feruchemy_argument", MetalArgumentType.class, new EmptyArgumentSerializer<>(() -> MetalArgumentType.INSTANCE));
     }
 
 

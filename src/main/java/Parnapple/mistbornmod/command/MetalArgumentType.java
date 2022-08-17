@@ -18,8 +18,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 //Thanks to the Allomancy Mod by legobmw99 for an example on how to do this
-public class FeruchemyArgumentType implements ArgumentType<String> {
-    public static final FeruchemyArgumentType INSTANCE = new FeruchemyArgumentType();
+public class MetalArgumentType implements ArgumentType<String> {
+    public static final MetalArgumentType INSTANCE = new MetalArgumentType();
     private static final Set<String> types = Arrays.stream(Metal.values()).map(Metal::getName).collect(Collectors.toSet());
     private static final DynamicCommandExceptionType unknown_power = new DynamicCommandExceptionType(o -> new TranslatableComponent("commands.mistbornmod.unrecognized", o));
 

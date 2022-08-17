@@ -153,5 +153,13 @@
   "commands.mistbornmod.get_feruchemy_powers": "Your feruchemal metals are: ",
   "commands.mistbornmod.added_feruchemy": "Added feruchemal power: ",
   "commands.mistbornmod.cleared_feruchemy": "Removed feruchemal power: ",
-  "commands.mistbornmod.unrecognized": "Invalid feruchemal power"
+  "commands.mistbornmod.clear_allomancy": "Cleared allomantic powers",
+  "commands.mistbornmod.add_all_allomancy": "Added all allomantic powers",
+  "commands.mistbornmod.get_allomancy_powers": "Your allomantic metals are: ",
+  "commands.mistbornmod.added_allomancy": "Added allomantic power: ",
+  "commands.mistbornmod.cleared_allomancy": "Removed allomantic power: ",
+  "commands.mistbornmod.unrecognized": "Invalid metal",
+
+  "key.mistbornmod.burn_key": "Toggle Burn Metal",
+  "key.category.mistborn": "MistCraft"
 }

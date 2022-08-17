@@ -1,12 +1,16 @@
-package Parnapple.mistbornmod.capability;
+package Parnapple.mistbornmod.capability.allomancy;
 
 import Parnapple.mistbornmod.util.Metal;
 
-public interface IFeruchemistData {
+public interface IAllomancerData {
 
     boolean hasPower(Metal metal);
 
-    boolean isFeruchemist();
+    boolean isBurning(Metal metal);
+
+    boolean toggleBurn(Metal metal);
+
+    boolean isAllomancer();
 
     Metal[] getPowers();
 
