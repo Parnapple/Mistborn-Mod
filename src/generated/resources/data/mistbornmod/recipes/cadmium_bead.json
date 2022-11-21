@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/cadmium"
+    },
+    {
+      "item": "mistbornmod:metal_hammer"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:cadmium_bead",
+    "count": 8
+  }
+}

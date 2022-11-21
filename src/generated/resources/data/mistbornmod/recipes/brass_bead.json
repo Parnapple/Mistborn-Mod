@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/brass"
+    },
+    {
+      "item": "mistbornmod:metal_hammer"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:brass_bead",
+    "count": 8
+  }
+}

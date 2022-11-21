@@ -1,10 +1,7 @@
 package Parnapple.mistbornmod.item;
 
 import Parnapple.mistbornmod.MistbornBaseMod;
-import Parnapple.mistbornmod.item.custom.CoppermindItem;
-import Parnapple.mistbornmod.item.custom.DaggerItem;
-import Parnapple.mistbornmod.item.custom.MetalmindItem;
-import Parnapple.mistbornmod.item.custom.MistcloakItem;
+import Parnapple.mistbornmod.item.custom.*;
 import Parnapple.mistbornmod.util.Metal;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
@@ -341,6 +338,74 @@ public class ModItems {
     public static final RegistryObject<Item> NICROSIL_ZINC_METALMIND = ITEMS.register("nicrosil_zinc_metalmind",
             () -> new MetalmindItem(Metal.ZINC,
                     new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB), true));
+
+    public static final RegistryObject<Item> TIN_BEAD = ITEMS.register("tin_bead",
+            () -> new MetalBeadItem(Metal.TIN,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> PEWTER_BEAD = ITEMS.register("pewter_bead",
+            () -> new MetalBeadItem(Metal.PEWTER,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> IRON_BEAD = ITEMS.register("iron_bead",
+            () -> new MetalBeadItem(Metal.IRON,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> STEEL_BEAD = ITEMS.register("steel_bead",
+            () -> new MetalBeadItem(Metal.STEEL,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> ZINC_BEAD = ITEMS.register("zinc_bead",
+            () -> new MetalBeadItem(Metal.ZINC,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> BRASS_BEAD = ITEMS.register("brass_bead",
+            () -> new MetalBeadItem(Metal.BRASS,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> COPPER_BEAD = ITEMS.register("copper_bead",
+            () -> new MetalBeadItem(Metal.COPPER,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> BRONZE_BEAD = ITEMS.register("bronze_bead",
+            () -> new MetalBeadItem(Metal.BRONZE,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> GOLD_BEAD = ITEMS.register("gold_bead",
+            () -> new MetalBeadItem(Metal.GOLD,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> ELECTRUM_BEAD = ITEMS.register("electrum_bead",
+            () -> new MetalBeadItem(Metal.ELECTRUM,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> BENDALLOY_BEAD = ITEMS.register("bendalloy_bead",
+            () -> new MetalBeadItem(Metal.BENDALLOY,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> CADMIUM_BEAD = ITEMS.register("cadmium_bead",
+            () -> new MetalBeadItem(Metal.CADMIUM,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> CHROMIUM_BEAD = ITEMS.register("chromium_bead",
+            () -> new MetalBeadItem(Metal.CHROMIUM,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> NICROSIL_BEAD = ITEMS.register("nicrosil_bead",
+            () -> new MetalBeadItem(Metal.NICROSIL,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> ALUMINUM_BEAD = ITEMS.register("aluminum_bead",
+            () -> new MetalBeadItem(Metal.ALUMINUM,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> DURALUMIN_BEAD = ITEMS.register("duralumin_bead",
+            () -> new MetalBeadItem(Metal.DURALUMIN,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(16)));
+
+    public static final RegistryObject<Item> METAL_HAMMER = ITEMS.register("metal_hammer",
+            () -> new MetalShapingHammerItem(
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(1).durability(128)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

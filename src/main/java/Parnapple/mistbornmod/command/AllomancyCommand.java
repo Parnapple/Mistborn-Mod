@@ -3,6 +3,8 @@ package Parnapple.mistbornmod.command;
 import Parnapple.mistbornmod.capability.ModCapabilities;
 import Parnapple.mistbornmod.capability.allomancy.IAllomancerData;
 import Parnapple.mistbornmod.capability.feruchemy.IFeruchemistData;
+import Parnapple.mistbornmod.network.ModPackets;
+import Parnapple.mistbornmod.network.S2CSyncAllomancyPowerDataPacket;
 import Parnapple.mistbornmod.util.Metal;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -57,7 +59,10 @@ public class AllomancyCommand {
 
     private int clearPowers(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer player = source.getPlayerOrException();
-        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(IAllomancerData::removeAllPowers);
+        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
+            data.removeAllPowers();
+            ModPackets.sendToPlayer(new S2CSyncAllomancyPowerDataPacket(data.getPowers()), player);
+        });
 
         source.sendSuccess(new TranslatableComponent("commands.mistbornmod.clear_allomancy"), true);
 
@@ -71,6 +76,7 @@ public class AllomancyCommand {
         player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
             Metal metal = Metal.valueOf(type.toUpperCase());
             data.removePower(metal);
+            ModPackets.sendToPlayer(new S2CSyncAllomancyPowerDataPacket(data.getPowers()), player);
         });
 
         TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.added_allomancy");
@@ -83,7 +89,10 @@ public class AllomancyCommand {
 
     private int givePowers(CommandSourceStack source) throws CommandSyntaxException {
         ServerPlayer player = source.getPlayerOrException();
-        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(IAllomancerData::giveAllPowers);
+        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
+            data.giveAllPowers();
+            ModPackets.sendToPlayer(new S2CSyncAllomancyPowerDataPacket(data.getPowers()), player);
+        });
 
         source.sendSuccess(new TranslatableComponent("commands.mistbornmod.add_all_allomancy"), true);
 
@@ -97,6 +106,7 @@ public class AllomancyCommand {
         player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
             Metal metal = Metal.valueOf(type.toUpperCase());
             data.givePower(metal);
+            ModPackets.sendToPlayer(new S2CSyncAllomancyPowerDataPacket(data.getPowers()), player);
         });
 
         TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.added_allomancy");

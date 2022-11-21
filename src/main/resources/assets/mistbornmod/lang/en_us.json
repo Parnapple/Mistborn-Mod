@@ -66,6 +66,7 @@
   "item.mistbornmod.glass_dagger": "Glass Dagger",
   "item.mistbornmod.mistcloak": "Mistcloak",
   "item.mistbornmod.mistcloak_leggings": "Mistcloak Leggings",
+
   "item.mistbornmod.steel_metalmind": "Steel Metalmind",
   "item.mistbornmod.pewter_metalmind": "Pewter Metalmind",
   "item.mistbornmod.gold_metalmind": "Gold Metalmind",
@@ -93,6 +94,25 @@
   "item.mistbornmod.nicrosil_chromium_metalmind": "Nicrosil-Lined Chromiumind",
   "item.mistbornmod.nicrosil_aluminum_metalmind": "Nicrosil-Lined Aluminumind",
   "item.mistbornmod.nicrosil_zinc_metalmind": "Nicrosil-Lined Zincmind",
+
+  "item.mistbornmod.tin_bead": "Tin Bead",
+  "item.mistbornmod.pewter_bead": "Pewter Bead",
+  "item.mistbornmod.zinc_bead": "Zinc Bead",
+  "item.mistbornmod.brass_bead": "Brass Bead",
+  "item.mistbornmod.iron_bead": "Iron Bead",
+  "item.mistbornmod.steel_bead": "Steel Bead",
+  "item.mistbornmod.copper_bead": "Copper Bead",
+  "item.mistbornmod.bronze_bead": "Bronze Bead",
+  "item.mistbornmod.gold_bead": "Gold Bead",
+  "item.mistbornmod.electrum_bead": "Electrum Bead",
+  "item.mistbornmod.aluminum_bead": "Aluminum Bead",
+  "item.mistbornmod.duralumin_bead": "Duralumin Bead",
+  "item.mistbornmod.chromium_bead": "Chromium Bead",
+  "item.mistbornmod.nicrosil_bead": "Nicrosil Bead",
+  "item.mistbornmod.cadmium_bead": "Cadmium Bead",
+  "item.mistbornmod.bendalloy_bead": "Bendalloy Bead",
+
+  "item.mistbornmod.metal_hammer": "Metal Shaping Hammer",
 
   "block.mistbornmod.tin_block": "Tin Block",
   "block.mistbornmod.tin_ore": "Tin Ore",
@@ -161,5 +181,7 @@
   "commands.mistbornmod.unrecognized": "Invalid metal",
 
   "key.mistbornmod.burn_key": "Toggle Burn Metal",
-  "key.category.mistborn": "MistCraft"
+  "key.category.mistborn": "MistCraft",
+
+  "mistbornmod.metals.tin": "Tin"
 }
