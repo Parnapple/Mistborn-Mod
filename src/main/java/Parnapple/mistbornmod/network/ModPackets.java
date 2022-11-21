@@ -31,6 +31,26 @@ public class ModPackets {
                 .encoder(C2SBurnUpdatePacket::toBytes)
                 .consumer(C2SBurnUpdatePacket::handle)
                 .add();
+        net.messageBuilder(C2SPushPullPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(C2SPushPullPacket::new)
+                .encoder(C2SPushPullPacket::toBytes)
+                .consumer(C2SPushPullPacket::handle)
+                .add();
+        net.messageBuilder(S2CSyncAllomancerDataPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(S2CSyncAllomancerDataPacket::new)
+                .encoder(S2CSyncAllomancerDataPacket::toBytes)
+                .consumer(S2CSyncAllomancerDataPacket::handle)
+                .add();
+        net.messageBuilder(S2CSyncAllomancyPowerDataPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(S2CSyncAllomancyPowerDataPacket::new)
+                .encoder(S2CSyncAllomancyPowerDataPacket::toBytes)
+                .consumer(S2CSyncAllomancyPowerDataPacket::handle)
+                .add();
+        net.messageBuilder(S2CSyncGECompassDataPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(S2CSyncGECompassDataPacket::new)
+                .encoder(S2CSyncGECompassDataPacket::toBytes)
+                .consumer(S2CSyncGECompassDataPacket::handle)
+                .add();
 
     }
 

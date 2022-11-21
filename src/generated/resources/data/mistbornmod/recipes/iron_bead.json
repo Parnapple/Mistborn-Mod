@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "mistbornmod:metal_hammer"
+    }
+  ],
+  "result": {
+    "item": "mistbornmod:iron_bead",
+    "count": 8
+  }
+}

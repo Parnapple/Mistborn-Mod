@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0" : "mistbornmod:item/metal_hammer"
+  }
+}

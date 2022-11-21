@@ -1,6 +1,9 @@
 package Parnapple.mistbornmod.capability.allomancy;
 
 import Parnapple.mistbornmod.util.Metal;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
 
 public interface IAllomancerData {
 
@@ -9,6 +12,12 @@ public interface IAllomancerData {
     boolean isBurning(Metal metal);
 
     boolean toggleBurn(Metal metal);
+
+    void stopAllBurning();
+
+    void setStore(Metal metal, int amount);
+
+    int getStore(Metal metal);
 
     boolean isAllomancer();
 
@@ -21,5 +30,17 @@ public interface IAllomancerData {
     void removePower(Metal metal);
 
     void removeAllPowers();
+
+    void setSpawnPos(BlockPos pos, String dimension);
+
+    BlockPos getSpawnPos();
+
+    ResourceKey<Level> getSpawnDimension();
+
+    void setDeathPos(BlockPos pos, String dimension);
+
+    BlockPos getDeathPos();
+
+    ResourceKey<Level> getDeathDimension();
 
 }

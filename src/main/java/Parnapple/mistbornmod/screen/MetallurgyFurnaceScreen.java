@@ -15,7 +15,7 @@ public class MetallurgyFurnaceScreen extends AbstractContainerScreen<MetallurgyF
     private static final ResourceLocation TEXTURE = new ResourceLocation(MistbornBaseMod.MOD_ID, "textures/gui/container/metallurgy_furnace.png");
 
     public MetallurgyFurnaceScreen(MetallurgyFurnaceContainer container, Inventory playerInv, Component title) {
-        super(container, playerInv, title                                             );
+        super(container, playerInv, title);
         this.leftPos =0;
         this.topPos =0;
         this.imageWidth =176;

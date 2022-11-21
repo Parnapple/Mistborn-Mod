@@ -287,5 +287,111 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("NI ")
                 .unlockedBy("has_material", has(ModTags.Items.NICROSIL_INGOT))
                 .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.METAL_HAMMER.get())
+                .define('S', ModTags.Items.STEEL_INGOT)
+                .define('H', Items.STICK)
+                .pattern("SS ")
+                .pattern("SH ")
+                .pattern("  H")
+                .unlockedBy("has_material", has(ModTags.Items.STEEL_INGOT))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.TIN_BEAD.get(), 8)
+                .requires(ModTags.Items.TIN_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.PEWTER_BEAD.get(), 8)
+                .requires(ModTags.Items.PEWTER_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.IRON_BEAD.get(), 8)
+                .requires(Items.IRON_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.STEEL_BEAD.get(), 8)
+                .requires(ModTags.Items.STEEL_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.COPPER_BEAD.get(), 8)
+                .requires(Items.COPPER_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.BRONZE_BEAD.get(), 8)
+                .requires(ModTags.Items.BRONZE_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.ZINC_BEAD.get(), 8)
+                .requires(ModTags.Items.ZINC_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.BRASS_BEAD.get(), 8)
+                .requires(ModTags.Items.BRASS_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.GOLD_BEAD.get(), 8)
+                .requires(Items.GOLD_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.ELECTRUM_BEAD.get(), 8)
+                .requires(ModTags.Items.ELECTRUM_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.CADMIUM_BEAD.get(), 8)
+                .requires(ModTags.Items.CADMIUM_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.BENDALLOY_BEAD.get(), 8)
+                .requires(ModTags.Items.BENDALLOY_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.CHROMIUM_BEAD.get(), 8)
+                .requires(ModTags.Items.CHROMIUM_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.NICROSIL_BEAD.get(), 8)
+                .requires(ModTags.Items.NICROSIL_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.ALUMINUM_BEAD.get(), 8)
+                .requires(ModTags.Items.ALUMINUM_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapelessRecipeBuilder.shapeless(ModItems.DURALUMIN_BEAD.get(), 8)
+                .requires(ModTags.Items.DURALUMIN_INGOT)
+                .requires(ModItems.METAL_HAMMER.get())
+                .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
     }
 }
