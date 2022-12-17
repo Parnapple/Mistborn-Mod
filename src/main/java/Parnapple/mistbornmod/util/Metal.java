@@ -10,7 +10,7 @@ public enum Metal {
     TIN("tin", new FeruchemyEffectPair(MobEffects.NIGHT_VISION, MobEffects.BLINDNESS)),
     PEWTER("pewter", new FeruchemyEffectPair(MobEffects.DAMAGE_BOOST, MobEffects.WEAKNESS)),
     COPPER("copper", null),
-    BRONZE("bronze", null),
+    BRONZE("bronze", new FeruchemyEffectPair(null, MobEffects.CONFUSION, "bronze")),
     GOLD("gold", new FeruchemyEffectPair(MobEffects.REGENERATION, MobEffects.POISON)),
     ELECTRUM("electrum", new FeruchemyEffectPair(MobEffects.DIG_SPEED, MobEffects.DIG_SLOWDOWN)),
     BENDALLOY("bendalloy", new FeruchemyEffectPair(MobEffects.SATURATION, MobEffects.HUNGER)),
@@ -18,7 +18,7 @@ public enum Metal {
     CHROMIUM("chromium", new FeruchemyEffectPair(MobEffects.LUCK, MobEffects.UNLUCK)),
     NICROSIL("nicrosil", null),
     ALUMINUM("aluminum", new FeruchemyEffectPair(null, null, "aluminum")),
-    DURALUMIN("duralumin", null);
+    DURALUMIN("duralumin", new FeruchemyEffectPair(MobEffects.HERO_OF_THE_VILLAGE, null, "duralumin"));
 
 
 

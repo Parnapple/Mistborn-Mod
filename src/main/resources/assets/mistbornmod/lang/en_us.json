@@ -80,6 +80,8 @@
   "item.mistbornmod.chromium_metalmind": "Chromium Metalmind",
   "item.mistbornmod.aluminum_metalmind": "Aluminum Metalmind",
   "item.mistbornmod.zinc_metalmind": "Zinc Metalmind",
+  "item.mistbornmod.duralumin_metalmind": "Duralumin Metalmind",
+  "item.mistbornmod.bronze_metalmind": "Bronze Metalmind",
 
   "item.mistbornmod.nicrosil_gold_metalmind": "Nicrosil-Lined Goldmind",
   "item.mistbornmod.nicrosil_steel_metalmind": "Nicrosil-Lined Steelmind",
@@ -94,6 +96,8 @@
   "item.mistbornmod.nicrosil_chromium_metalmind": "Nicrosil-Lined Chromiumind",
   "item.mistbornmod.nicrosil_aluminum_metalmind": "Nicrosil-Lined Aluminumind",
   "item.mistbornmod.nicrosil_zinc_metalmind": "Nicrosil-Lined Zincmind",
+  "item.mistbornmod.nicrosil_duralumin_metalmind": "Nicrosil-Lined Duraluminmind",
+  "item.mistbornmod.nicrosil_bronze_metalmind": "Nicrosil-Lined Bronzemind",
 
   "item.mistbornmod.tin_bead": "Tin Bead",
   "item.mistbornmod.pewter_bead": "Pewter Bead",
@@ -111,6 +115,23 @@
   "item.mistbornmod.nicrosil_bead": "Nicrosil Bead",
   "item.mistbornmod.cadmium_bead": "Cadmium Bead",
   "item.mistbornmod.bendalloy_bead": "Bendalloy Bead",
+
+  "item.mistbornmod.tin_spike": "Tin Spike",
+  "item.mistbornmod.pewter_spike": "Pewter Spike",
+  "item.mistbornmod.zinc_spike": "Zinc Spike",
+  "item.mistbornmod.brass_spike": "Brass Spike",
+  "item.mistbornmod.iron_spike": "Iron Spike",
+  "item.mistbornmod.steel_spike": "Steel Spike",
+  "item.mistbornmod.copper_spike": "Copper Spike",
+  "item.mistbornmod.bronze_spike": "Bronze Spike",
+  "item.mistbornmod.gold_spike": "Gold Spike",
+  "item.mistbornmod.electrum_spike": "Electrum Spike",
+  "item.mistbornmod.aluminum_spike": "Aluminum Spike",
+  "item.mistbornmod.duralumin_spike": "Duralumin Spike",
+  "item.mistbornmod.chromium_spike": "Chromium Spike",
+  "item.mistbornmod.nicrosil_spike": "Nicrosil Spike",
+  "item.mistbornmod.cadmium_spike": "Cadmium Spike",
+  "item.mistbornmod.bendalloy_spike": "Bendalloy Spike",
 
   "item.mistbornmod.metal_hammer": "Metal Shaping Hammer",
 
@@ -166,6 +187,8 @@
   "effect.mistbornmod.no_identity": "Identity-less",
   "effect.mistbornmod.mental_speed": "Mental Speed",
   "effect.mistbornmod.mental_slowdown": "Mental Slowdown",
+  "effect.mistbornmod.disconnect": "Disconnect",
+  "effect.mistbornmod.awake": "Awake",
   "death.attack.wounds": "%1$s bled to death",
 
   "commands.mistbornmod.clear_feruchemy": "Cleared feruchemal powers",

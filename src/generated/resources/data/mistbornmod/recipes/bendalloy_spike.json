@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " NI",
+    "NI ",
+    "I  "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/bendalloy"
+    },
+    "N": {
+      "tag": "forge:nuggets/bendalloy"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:bendalloy_spike"
+  }
+}

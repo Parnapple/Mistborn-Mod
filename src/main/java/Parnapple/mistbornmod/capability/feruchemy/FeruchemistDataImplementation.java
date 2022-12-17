@@ -8,10 +8,12 @@ import java.util.Arrays;
 public class FeruchemistDataImplementation implements IFeruchemistData {
 
     private boolean[] powers;
+    private boolean everFeruchemist;
 
     public FeruchemistDataImplementation() {
         int powerCount = Metal.values().length;
         this.powers = new boolean[powerCount];
+        this.everFeruchemist = false;
         Arrays.fill(this.powers, false);
     }
 
@@ -36,16 +38,23 @@ public class FeruchemistDataImplementation implements IFeruchemistData {
     @Override
     public void givePower(Metal metal) {
         this.powers[metal.getIndex()] = true;
+        this.everFeruchemist = true;
     }
 
     @Override
     public void giveAllPowers() {
         Arrays.fill(this.powers, true);
+        this.everFeruchemist = true;
     }
 
     @Override
     public void removePower(Metal metal) {
         this.powers[metal.getIndex()] = false;
+    }
+
+    @Override
+    public boolean everFeruchemist() {
+        return this.everFeruchemist;
     }
 
     @Override
@@ -59,6 +68,8 @@ public class FeruchemistDataImplementation implements IFeruchemistData {
             tag.putBoolean(metal.getName(), this.hasPower(metal));
         }
 
+        tag.putBoolean("ever", everFeruchemist);
+
         return tag;
     }
 
@@ -70,5 +81,8 @@ public class FeruchemistDataImplementation implements IFeruchemistData {
                 this.removePower(metal);
             }
         }
+
+        everFeruchemist = tag.getBoolean("ever");
+
     }
 }

@@ -17,6 +17,7 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -39,7 +40,7 @@ public class ClientModEvents {
                 if(ClientAllomancyData.getPowers().length > 1) {
                     mc.setScreen(new AllomancyScreen());
                 } else {
-                    ModPackets.sendToServer(new C2SBurnUpdatePacket(ClientAllomancyData.getPowers()[0]));
+                    ModPackets.sendToServer(new C2SBurnUpdatePacket(ClientAllomancyData.getPowers()[0], Screen.hasControlDown() || Screen.hasAltDown()));
                 }
             }
             if(ClientAllomancyData.isBurning(Metal.IRON) || ClientAllomancyData.isBurning(Metal.STEEL)) {

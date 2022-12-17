@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " NI",
+    "NI ",
+    "I  "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/steel"
+    },
+    "N": {
+      "tag": "forge:nuggets/steel"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:steel_spike"
+  }
+}

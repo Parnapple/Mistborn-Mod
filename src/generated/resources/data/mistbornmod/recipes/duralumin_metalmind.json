@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/duralumin"
+    },
+    "N": {
+      "tag": "forge:nuggets/duralumin"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:duralumin_metalmind"
+  }
+}

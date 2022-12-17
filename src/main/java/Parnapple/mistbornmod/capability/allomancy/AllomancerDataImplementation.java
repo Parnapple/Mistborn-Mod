@@ -15,23 +15,31 @@ public class AllomancerDataImplementation implements IAllomancerData {
 
     private boolean[] powers;
     private boolean[] burning;
+    private boolean[] flaring;
     private int[] stores;
+    private boolean enhanced;
     private BlockPos spawnPos;
     private String spawnDim;
     private BlockPos deathPos;
     private String deathDim;
+    private boolean everAllomancer;
 
     public AllomancerDataImplementation() {
         int powerCount = Metal.values().length;
         this.powers = new boolean[powerCount];
         this.burning = new boolean[powerCount];
+        this.flaring = new boolean[powerCount];
         this.stores = new int[powerCount];
+        this.enhanced = false;
         Arrays.fill(this.powers, false);
         Arrays.fill(this.burning, false);
+        Arrays.fill(this.flaring, false);
         Arrays.fill(this.stores, 0);
 
         this.spawnPos = null;
         this.deathPos = null;
+
+        this.everAllomancer = false;
     }
 
     @Override
@@ -85,11 +93,13 @@ public class AllomancerDataImplementation implements IAllomancerData {
     @Override
     public void givePower(Metal metal) {
         this.powers[metal.getIndex()] = true;
+        this.everAllomancer = false;
     }
 
     @Override
     public void giveAllPowers() {
         Arrays.fill(this.powers, true);
+        this.everAllomancer = false;
     }
 
     @Override
@@ -100,6 +110,32 @@ public class AllomancerDataImplementation implements IAllomancerData {
     @Override
     public void removeAllPowers() {
         Arrays.fill(this.powers, false);
+    }
+
+    @Override
+    public void setEnhanced(boolean enhanced) {
+        this.enhanced = enhanced;
+    }
+
+    @Override
+    public boolean isEnhanced() {
+        return this.enhanced;
+    }
+
+    @Override
+    public boolean isFlaring(Metal metal) {
+        return this.flaring[metal.getIndex()];
+    }
+
+    @Override
+    public boolean toggleFlaring(Metal metal, boolean flaring) {
+        this.flaring[metal.getIndex()] = flaring;
+        return isFlaring(metal);
+    }
+
+    @Override
+    public void stopAllFlaring() {
+        Arrays.fill(this.flaring, false);
     }
 
     public CompoundTag serializeNBT() {
@@ -113,6 +149,11 @@ public class AllomancerDataImplementation implements IAllomancerData {
         CompoundTag burning = new CompoundTag();
         for(Metal metal: Metal.values()) {
             burning.putBoolean(metal.getName(), this.isBurning(metal));
+        }
+
+        CompoundTag flaring = new CompoundTag();
+        for(Metal metal: Metal.values()) {
+            flaring.putBoolean(metal.getName(), this.isFlaring(metal));
         }
 
         CompoundTag stores = new CompoundTag();
@@ -138,9 +179,11 @@ public class AllomancerDataImplementation implements IAllomancerData {
 
         tag.put("powers", powers);
         tag.put("burning", burning);
+        tag.put("flaring", flaring);
         tag.put("stores", stores);
         tag.put("spawn", spawnPos);
         tag.put("death", deathPos);
+        tag.putBoolean("ever", everAllomancer);
         return tag;
     }
 
@@ -162,6 +205,11 @@ public class AllomancerDataImplementation implements IAllomancerData {
             }
         }
 
+        CompoundTag flaring = tag.getCompound("flaring");
+        for(Metal metal: Metal.values()) {
+            this.toggleFlaring(metal, flaring.getBoolean(metal.getName()));
+        }
+
         CompoundTag stores = tag.getCompound("stores");
         for(Metal metal: Metal.values()) {
             this.setStore(metal, stores.getInt(metal.getName()));
@@ -178,6 +226,9 @@ public class AllomancerDataImplementation implements IAllomancerData {
             this.deathPos = new BlockPos(deathPos.getInt("x"), deathPos.getInt("y"), deathPos.getInt("z"));
             this.deathDim = deathPos.getString("dim");
         }
+
+        this.everAllomancer = tag.getBoolean("ever");
+
     }
 
     public void setSpawnPos(BlockPos pos, String dimension) {
@@ -212,5 +263,8 @@ public class AllomancerDataImplementation implements IAllomancerData {
         return ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(this.deathDim));
     }
 
-
+    @Override
+    public boolean everAllomancer() {
+        return everAllomancer;
+    }
 }

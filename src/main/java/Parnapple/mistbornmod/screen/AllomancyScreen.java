@@ -51,7 +51,7 @@ public class AllomancyScreen extends Screen {
             }
 
             ImageButton button = new ImageButton(x, y, 64, 32,0, 0,32,
-                    texture, 64, 64, btn -> ModPackets.sendToServer(new C2SBurnUpdatePacket(mt)),
+                    texture, 64, 64, btn -> ModPackets.sendToServer(new C2SBurnUpdatePacket(mt, hasControlDown() || hasAltDown())),
                     new TranslatableComponent("mistbornmod.metals." + mt.getName()));
 
             this.addRenderableWidget(button);

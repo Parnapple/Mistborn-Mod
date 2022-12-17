@@ -19,28 +19,32 @@ public class FeruchemyEffectPair {
     }
 
     public MobEffect getTappingEffect() {
-        if(this.type == "iron") {
+        if(this.type.equals("iron")) {
             return ModEffects.WEIGHT.get();
-        }else if(this.type == "aluminum") {
+        }else if(this.type.equals("aluminum")) {
             return ModEffects.IDENTITY.get();
-        }else if(this.type == "zinc") {
+        }else if(this.type.equals("zinc")) {
             return ModEffects.MENTAL_SPEED.get();
+        }else if(this.type.equals("bronze")) {
+            return ModEffects.AWAKE.get();
         }
 
         return tappingEffect;
     }
 
     public MobEffect getStoringEffect() {
-        if(this.type == "iron") {
+        if(this.type.equals("iron")) {
             return ModEffects.LIGHTNESS.get();
-        } else if(this.type == "brass") {
+        } else if(this.type.equals("brass")) {
             return ModEffects.COLD.get();
-        }else if(this.type == "cadmium") {
+        }else if(this.type.equals("cadmium")) {
             return ModEffects.DROWNING.get();
-        }else if(this.type == "aluminum") {
+        }else if(this.type.equals("aluminum")) {
             return ModEffects.NO_IDENTITY.get();
-        }else if(this.type == "zinc") {
+        }else if(this.type.equals("zinc")) {
             return ModEffects.MENTAL_SLOWDOWN.get();
+        }else if(this.type.equals("duralumin")) {
+            return ModEffects.DISCONNECT.get();
         }
 
         return storingEffect;

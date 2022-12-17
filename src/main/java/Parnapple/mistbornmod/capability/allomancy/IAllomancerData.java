@@ -31,6 +31,16 @@ public interface IAllomancerData {
 
     void removeAllPowers();
 
+    void setEnhanced(boolean enhanced);
+
+    boolean isEnhanced();
+
+    boolean isFlaring(Metal metal);
+
+    boolean toggleFlaring(Metal metal, boolean flaring);
+
+    void stopAllFlaring();
+
     void setSpawnPos(BlockPos pos, String dimension);
 
     BlockPos getSpawnPos();
@@ -42,5 +52,7 @@ public interface IAllomancerData {
     BlockPos getDeathPos();
 
     ResourceKey<Level> getDeathDimension();
+
+    boolean everAllomancer();
 
 }

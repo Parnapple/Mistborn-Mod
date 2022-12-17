@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " NI",
+    "NI ",
+    "I  "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/brass"
+    },
+    "N": {
+      "tag": "forge:nuggets/brass"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:brass_spike"
+  }
+}

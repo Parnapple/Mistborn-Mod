@@ -249,6 +249,8 @@ public class MetalmindItem extends Item {
             } else {
                 effectDuration = 0;
             }
+        } else if(metalmindItemStack.type == Metal.BRONZE && storing > 0) {
+            effectDuration = 100;
         }
 
 
