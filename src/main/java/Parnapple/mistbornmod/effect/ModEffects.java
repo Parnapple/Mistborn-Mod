@@ -45,6 +45,12 @@ public class ModEffects {
     public static final RegistryObject<MobEffect> MENTAL_SLOWDOWN = MOB_EFFECTS.register("mental_slowdown",
             () -> new ModEffect(MobEffectCategory.HARMFUL, 3464565));
 
+    public static final RegistryObject<MobEffect> DISCONNECT = MOB_EFFECTS.register("disconnect",
+            () -> new DisconnectEffect(MobEffectCategory.HARMFUL, 100000001));
+
+    public static final RegistryObject<MobEffect> AWAKE = MOB_EFFECTS.register("awake",
+            () -> new WakefulnessEffect(MobEffectCategory.BENEFICIAL, 5555));
+
     public static void register(IEventBus bus) {
         MOB_EFFECTS.register(bus);
     }

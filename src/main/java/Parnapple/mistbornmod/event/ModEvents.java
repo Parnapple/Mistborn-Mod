@@ -5,6 +5,7 @@ import Parnapple.mistbornmod.capability.ModCapabilities;
 import Parnapple.mistbornmod.command.AllomancyCommand;
 import Parnapple.mistbornmod.command.FeruchemyCommand;
 import Parnapple.mistbornmod.effect.ModEffects;
+import Parnapple.mistbornmod.item.custom.HemalurgicSpikeItem;
 import Parnapple.mistbornmod.network.ModPackets;
 import Parnapple.mistbornmod.network.S2CSyncAllomancerDataPacket;
 import Parnapple.mistbornmod.network.S2CSyncAllomancyPowerDataPacket;
@@ -15,10 +16,12 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -143,14 +146,14 @@ public class ModEvents {
             if(event.getPlayer() instanceof ServerPlayer player) {
 
                 player.getCapability(ModCapabilities.FERUCHEMY_INSTANCE).ifPresent(data -> {
-                            if(!data.isFeruchemist()) {
+                            if(!data.isFeruchemist() && !data.everFeruchemist()) {
                                 byte randomMetal = (byte) (Math.random() * Metal.values().length);
                                 data.givePower(Metal.getMetal(randomMetal));
                             }
                         });
 
                 player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
-                    if(!data.isAllomancer()) {
+                    if(!data.isAllomancer() && !data.everAllomancer()) {
                         byte randomMetal = (byte) (Math.random() * Metal.values().length);
                         data.givePower(Metal.getMetal(randomMetal));
                         Metal power = Metal.getMetal(randomMetal);
@@ -183,29 +186,52 @@ public class ModEvents {
     private static void playerPowerTick(Player player, Level level) {
         player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
             if(data.isAllomancer()) {
+
+                if(data.isBurning(Metal.DURALUMIN)) {
+                    data.setEnhanced(true);
+                }
+
+
                 for(Metal mt: Metal.values()) {
                     if(data.isBurning(mt)) {
                         if(data.getStore(mt) <= 0 || !data.hasPower(mt)) {
                             data.toggleBurn(mt);
+                            data.setEnhanced(false);
                         } else {
-                            data.setStore(mt, data.getStore(mt) - 1);
+                            int burnPower = data.isFlaring(mt) ? 2 : 1;
+                            if(data.isEnhanced()) {
+                                burnPower = 20;
+                            }
+//                            if(data.isFlaring(mt))
+//                                player.displayClientMessage(new TextComponent("You are flaring: " + mt.getName()), true);
+                            data.setStore(mt, data.getStore(mt) - burnPower);
                         }
                         ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(mt, data.getStore(mt), data.isBurning(mt)), (ServerPlayer) player);
+                    } else {
+                        data.toggleFlaring(mt, false);
                     }
                 }
 
 
                 if(data.isBurning(Metal.TIN)) {
                         player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 17, true, false, false));
+                        if(data.isEnhanced()) {
+                            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, 1, true, false, false));
+                        }
                 }
                 if(!data.isBurning(Metal.TIN) && player.hasEffect(MobEffects.NIGHT_VISION) && player.getEffect(MobEffects.NIGHT_VISION).getAmplifier() == 17) {
                     player.removeEffect(MobEffects.NIGHT_VISION);
                 }
 
                 if(data.isBurning(Metal.PEWTER)) {
-                        player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 10, 1, true, false, false));
-                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,10, 0, true, false, false));
-                        player.addEffect(new MobEffectInstance(MobEffects.JUMP, 10, 0, true, false, false));
+                    int strength = data.isFlaring(Metal.PEWTER) ? 1 : 0;
+                    if(data.isEnhanced()) {
+                        strength = 10;
+                    }
+                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 10, strength, true, false, false));
+                    player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,10, strength, true, false, false));
+                    player.addEffect(new MobEffectInstance(MobEffects.JUMP, 10, strength, true, false, false));
+                    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 10, strength, true, false, false));
                 }
 
                 if(data.isBurning(Metal.ALUMINUM)) {
@@ -216,7 +242,11 @@ public class ModEvents {
                 }
 
                 if(data.isBurning(Metal.BRASS)) {
-                    for(PathfinderMob entity: level.getEntitiesOfClass(PathfinderMob.class, player.getBoundingBox().inflate(4))) {
+                    int strength = data.isFlaring(Metal.BRASS) ? 8 : 4;
+                    if(data.isEnhanced()) {
+                        strength = 15;
+                    }
+                    for(PathfinderMob entity: level.getEntitiesOfClass(PathfinderMob.class, player.getBoundingBox().inflate(strength))) {
 
                         entity.goalSelector.getRunningGoals().filter(ModEvents::isAggressiveGoal).forEach(WrappedGoal::stop);
                         entity.targetSelector.getRunningGoals().filter(ModEvents::isAggressiveGoal).forEach(WrappedGoal::stop);
@@ -231,15 +261,28 @@ public class ModEvents {
                         if(entity instanceof TamableAnimal tamableAnimal) {
                             tamableAnimal.tame(player);
                         }
+                        if(data.isEnhanced()) {
+                            entity.setNoAi(true);
+                        }
                     }
 
                 }
 
                 if(data.isBurning(Metal.ZINC)) {
-                    for(PathfinderMob entity: level.getEntitiesOfClass(PathfinderMob.class, player.getBoundingBox().inflate(8))) {
+                    int strength = data.isFlaring(Metal.ZINC) ? 16 : 8;
+                    if(data.isEnhanced()) {
+                        strength = 40;
+                    }
+                    for(PathfinderMob entity: level.getEntitiesOfClass(PathfinderMob.class, player.getBoundingBox().inflate(strength))) {
                         Random random = new Random();
+
+                        if(entity.isNoAi()) {
+                            entity.setNoAi(false);
+                        }
+
                         entity.targetSelector.enableControlFlag(Goal.Flag.TARGET);
                         entity.setAggressive(true);
+
                         if(!(entity instanceof Bee || entity instanceof Wolf || entity instanceof Llama) && entity instanceof Animal animal) {
                             if(!animal.isBaby() && random.nextInt(100) == 1)
                                     animal.setInLove(player);
@@ -256,7 +299,7 @@ public class ModEvents {
                             entity.goalSelector.addGoal(1, new SwellGoal(creeper));
                         }
                         if (entity instanceof AbstractHorse horse) {
-                            entity.goalSelector.addGoal(1, new RunAroundLikeCrazyGoal(horse, 3));
+                            entity.goalSelector.addGoal(10, new RunAroundLikeCrazyGoal(horse, 3));
                         }
                         if (entity instanceof AbstractSkeleton skeleton) {
                             entity.goalSelector.addGoal(1, new RangedBowAttackGoal<>(skeleton, 1.0D, 20, 15.0F));
@@ -274,10 +317,14 @@ public class ModEvents {
 
                 if(data.isBurning(Metal.BENDALLOY) && !data.isBurning(Metal.CADMIUM)) {
                     if(!level.isClientSide()) {
-                        int range = 4;
-                        int power = 3;
+                        int range = data.isFlaring(Metal.BENDALLOY) ? 8 : 4;
+                        int power = data.isFlaring(Metal.BENDALLOY) ? 6 : 3;
+                        if(data.isEnhanced()) {
+                            range = 16;
+                            power = 12;
+                        }
                         AABB withinRange = player.getBoundingBox().inflate(range);
-                        AABB outsideRange = player.getBoundingBox().inflate(32);
+                        AABB outsideRange = player.getBoundingBox().inflate(range*8);
 
                         List<LivingEntity> entitiesInRange = level.getEntitiesOfClass(LivingEntity.class, withinRange);
                         List<LivingEntity> entitiesOutsideRange = level.getEntitiesOfClass(LivingEntity.class, outsideRange).stream().filter(entity -> !entitiesInRange.contains(entity)).toList();
@@ -293,10 +340,14 @@ public class ModEvents {
                 }
                 else if(data.isBurning(Metal.CADMIUM) && !data.isBurning(Metal.BENDALLOY)) {
                     if(!level.isClientSide()) {
-                        int range = 4;
-                        int power = 3;
+                        int range = data.isFlaring(Metal.CADMIUM) ? 8 : 4;
+                        int power = data.isFlaring(Metal.CADMIUM) ? 6 : 3;
+                        if(data.isEnhanced()) {
+                            range = 16;
+                            power = 12;
+                        }
                         AABB withinRange = player.getBoundingBox().inflate(range);
-                        AABB outsideRange = player.getBoundingBox().inflate(32);
+                        AABB outsideRange = player.getBoundingBox().inflate(range*8);
 
                         List<LivingEntity> entitiesInRange = level.getEntitiesOfClass(LivingEntity.class, withinRange);
                         List<LivingEntity> entitiesOutsideRange = level.getEntitiesOfClass(LivingEntity.class, outsideRange).stream().filter(entity -> !entitiesInRange.contains(entity)).toList();
@@ -321,6 +372,16 @@ public class ModEvents {
 
                         int pos = getCompassPos(deathPos, player);
                         //player.displayClientMessage(new TextComponent("Gold pos: " + pos), true);
+                        if(data.isEnhanced()) {
+                            ResourceKey<Level> dim = data.getDeathDimension();
+                            if(!player.level.dimension().equals(dim)) {
+                                player.changeDimension(level.getServer().getLevel(dim));
+                            }
+                            player.teleportToWithTicket(deathPos.getX(), deathPos.getY()+3, deathPos.getZ());
+                            player.fallDistance = 0;
+                            data.setStore(Metal.GOLD, 0);
+                            data.setEnhanced(false);
+                        }
 
                         ModPackets.sendToPlayer(new S2CSyncGECompassDataPacket(1, pos), (ServerPlayer) player);
 
@@ -341,13 +402,24 @@ public class ModEvents {
                     int pos = getCompassPos(spawnPos, player);
                     //player.displayClientMessage(new TextComponent("Electrum pos: " + pos), true);
 
+                    if(data.isEnhanced()) {
+                        ResourceKey<Level> dim = data.getSpawnDimension();
+                        if(!player.level.dimension().equals(dim)) {
+                            player.changeDimension(level.getServer().getLevel(dim));
+                        }
+                        player.teleportToWithTicket(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ());
+                        player.fallDistance = 0;
+                        data.setStore(Metal.ELECTRUM, 0);
+                        data.setEnhanced(false);
+                    }
+
                     ModPackets.sendToPlayer(new S2CSyncGECompassDataPacket(2, pos), (ServerPlayer) player);
 
                     //player.displayClientMessage(new TextComponent("Spawn point: " + spawnPos.toString()), true);
                 }
 
                 if(data.isBurning(Metal.BRONZE)) {
-                    int power = 64;
+                    int power = data.isFlaring(Metal.BRONZE) ? 128 : 64;
                     List<ServerPlayer> players = level.getEntitiesOfClass(ServerPlayer.class, player.getBoundingBox().inflate(power));
 
                     for(ServerPlayer otherPlayer: players) {
@@ -355,8 +427,29 @@ public class ModEvents {
                             if(!otherData.isBurning(Metal.COPPER)) {
                                 for(Metal mt: Metal.values()) {
                                     if(otherData.isBurning(mt)) {
-                                        otherPlayer.addEffect(new MobEffectInstance(MobEffects.GLOWING, 10));
+                                        if(!otherPlayer.equals(player)) {
+                                            otherPlayer.addEffect(new MobEffectInstance(MobEffects.GLOWING, 10));
+                                            if(data.isEnhanced()) {
+                                                otherPlayer.teleportTo(player.getX(), player.getY(), player.getZ());
+                                            }
+                                        }
                                     }
+                                }
+                            }
+                        });
+                    }
+
+                }
+
+                if(data.isBurning(Metal.CHROMIUM) && data.isEnhanced()) {
+                    int range = 8;
+                    List<ServerPlayer> players = level.getEntitiesOfClass(ServerPlayer.class, player.getBoundingBox().inflate(range));
+
+                    for(ServerPlayer otherPlayer: players) {
+                        otherPlayer.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(otherData -> {
+                            if(!otherPlayer.equals(player)) {
+                                for(Metal mt: Metal.values()) {
+                                    otherData.setStore(mt, 0);
                                 }
                             }
                         });
@@ -381,6 +474,15 @@ public class ModEvents {
                         });
                     }
                 }
+                if(data.isBurning(Metal.NICROSIL)) {
+                    if (event.getEntityLiving() instanceof Player player) {
+                        player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(otherData -> {
+                            for(Metal mt: Metal.values()) {
+                                otherData.setEnhanced(true);
+                            }
+                        });
+                    }
+                }
             });
         }
     }
@@ -393,6 +495,11 @@ public class ModEvents {
                 data.setDeathPos(new BlockPos(player.position()), player.level.dimension().location().toString());
                 //player.displayClientMessage(new TextComponent("DeathPos updated"), false);
             });
+            if(event.getSource().getEntity() instanceof LivingEntity entity) {
+                if(entity.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof HemalurgicSpikeItem spike) {
+                    spike.onPlayerKill(player, entity.getItemInHand(InteractionHand.MAIN_HAND));
+                }
+            }
         }
     }
 

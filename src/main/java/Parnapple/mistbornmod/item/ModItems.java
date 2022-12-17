@@ -288,6 +288,14 @@ public class ModItems {
             () -> new MetalmindItem(Metal.ZINC,
                     new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
 
+    public static final RegistryObject<Item> DURALUMIN_METALMIND = ITEMS.register("duralumin_metalmind",
+            () -> new MetalmindItem(Metal.DURALUMIN,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> BRONZE_METALMIND = ITEMS.register("bronze_metalmind",
+            () -> new MetalmindItem(Metal.BRONZE,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
     public static final RegistryObject<Item> NICROSIL_GOLD_METALMIND = ITEMS.register("nicrosil_gold_metalmind",
             () -> new MetalmindItem(Metal.GOLD,
                     new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB), true));
@@ -337,6 +345,14 @@ public class ModItems {
 
     public static final RegistryObject<Item> NICROSIL_ZINC_METALMIND = ITEMS.register("nicrosil_zinc_metalmind",
             () -> new MetalmindItem(Metal.ZINC,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB), true));
+
+    public static final RegistryObject<Item> NICROSIL_DURALUMIN_METALMIND = ITEMS.register("nicrosil_duralumin_metalmind",
+            () -> new MetalmindItem(Metal.DURALUMIN,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB), true));
+
+    public static final RegistryObject<Item> NICROSIL_BRONZE_METALMIND = ITEMS.register("nicrosil_bronze_metalmind",
+            () -> new MetalmindItem(Metal.BRONZE,
                     new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB), true));
 
     public static final RegistryObject<Item> TIN_BEAD = ITEMS.register("tin_bead",
@@ -406,6 +422,33 @@ public class ModItems {
     public static final RegistryObject<Item> METAL_HAMMER = ITEMS.register("metal_hammer",
             () -> new MetalShapingHammerItem(
                     new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(1).durability(128)));
+
+    public static final RegistryObject<Item> ALUMINUM_SPIKE = ITEMS.register("aluminum_spike",
+            () -> new HemalurgicSpikeItem(Metal.ALUMINUM));
+
+    public static final RegistryObject<Item> STEEL_SPIKE = ITEMS.register("steel_spike",
+            () -> new HemalurgicSpikeItem(Metal.STEEL));
+
+    public static final RegistryObject<Item> PEWTER_SPIKE = ITEMS.register("pewter_spike",
+            () -> new HemalurgicSpikeItem(Metal.PEWTER));
+
+    public static final RegistryObject<Item> BRASS_SPIKE = ITEMS.register("brass_spike",
+            () -> new HemalurgicSpikeItem(Metal.BRASS));
+
+    public static final RegistryObject<Item> BRONZE_SPIKE = ITEMS.register("bronze_spike",
+            () -> new HemalurgicSpikeItem(Metal.BRONZE));
+
+    public static final RegistryObject<Item> CADMIUM_SPIKE = ITEMS.register("cadmium_spike",
+            () -> new HemalurgicSpikeItem(Metal.CADMIUM));
+
+    public static final RegistryObject<Item> GOLD_SPIKE = ITEMS.register("gold_spike",
+            () -> new HemalurgicSpikeItem(Metal.GOLD));
+
+    public static final RegistryObject<Item> ELECTRUM_SPIKE = ITEMS.register("electrum_spike",
+            () -> new HemalurgicSpikeItem(Metal.ELECTRUM));
+
+    public static final RegistryObject<Item> BENDALLOY_SPIKE = ITEMS.register("bendalloy_spike",
+            () -> new HemalurgicSpikeItem(Metal.BENDALLOY));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

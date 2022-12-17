@@ -41,3 +41,20 @@ First, craft a nicrosil-lined metalmind using an empty metalmind, 4 nicrosil ing
 Filling the metalmind can be done normally, and as long as nicrosil is one of your feruchemal powers, it will fill up the 'Investiture' charge alongside the normal charge. When an none feruchemist uses this metalmind, the 'Investiture' charge will go down. It can be used by non-feruchemists until the 'Investiture' charge runs out.
 
 For anyone to be able to use it, you will also have to make it unkeyed(just start filling an aluminum mind before you start filling it).
+
+
+Allomancy
+**************
+When you spawn in a world, you are given one random allomantic power. To check, use the '/allomancy get' command. Cheats don't need to be enabled
+For the other allomancy commands, you do need cheats enabled. These commands are the same as the feruchemy commands, but for allomancy instead.
+
+To use allomancy, you need to craft a metal shaping hammer out of three steel and two sticks. Combine it with a metal ingot to get metal beads. Right click to eat the beads.
+Press the 'v' key to burn your metal. If you have multiple metals, a HUD will appear with buttons to click for burning your metals.
+
+Flaring
+~~~~~~~~~~~~~~~~~~~
+Press ctrl while pressing 'v' or clicking the metal button to flare your metal. It will burn twice as fast, but the effects will be twice as strong.
+
+Duralumin/Nicrosil boosting
+~~~~~~~~~~~~~~~~~~~
+If you burn duralumin or are hit by someone burning nicrosil, all of your metals will be dramatically enhanced. This can have unexpected effects.

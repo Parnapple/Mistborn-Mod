@@ -18,4 +18,6 @@ public interface IFeruchemistData {
 
     void removeAllPowers();
 
+    boolean everFeruchemist();
+
 }

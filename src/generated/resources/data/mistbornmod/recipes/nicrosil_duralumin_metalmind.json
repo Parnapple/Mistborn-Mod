@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "IMI",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/nicrosil"
+    },
+    "N": {
+      "tag": "forge:nuggets/nicrosil"
+    },
+    "M": {
+      "item": "mistbornmod:duralumin_metalmind"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:nicrosil_duralumin_metalmind"
+  }
+}

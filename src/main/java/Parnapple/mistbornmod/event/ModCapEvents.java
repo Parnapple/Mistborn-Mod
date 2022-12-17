@@ -3,6 +3,7 @@ package Parnapple.mistbornmod.event;
 import Parnapple.mistbornmod.capability.allomancy.AllomancyCapabilityProvider;
 import Parnapple.mistbornmod.capability.feruchemy.FeruchemyCapabilityProvider;
 import Parnapple.mistbornmod.capability.ModCapabilities;
+import Parnapple.mistbornmod.capability.hemalurgy.HemalurgyCapabilityProvider;
 import Parnapple.mistbornmod.network.ModPackets;
 import Parnapple.mistbornmod.network.S2CSyncAllomancerDataPacket;
 import Parnapple.mistbornmod.util.Metal;
@@ -27,6 +28,10 @@ public class ModCapEvents {
              if (!event.getObject().getCapability(ModCapabilities.ALLOMANCY_INSTANCE).isPresent()) {
                  // The player does not already have this capability so we need to add the capability provider here
                  event.addCapability(AllomancyCapabilityProvider.IDENTIFIER, new AllomancyCapabilityProvider());
+             }
+             if (!event.getObject().getCapability(ModCapabilities.HEMALURGY_INSTANCE).isPresent()) {
+                 // The player does not already have this capability so we need to add the capability provider here
+                 event.addCapability(HemalurgyCapabilityProvider.IDENTIFIER, new HemalurgyCapabilityProvider());
              }
          }
      }
@@ -69,8 +74,15 @@ public class ModCapEvents {
                 });
             });
 
+            player.getCapability(ModCapabilities.HEMALURGY_INSTANCE).ifPresent(data -> {
+                event.getOriginal().getCapability(ModCapabilities.HEMALURGY_INSTANCE).ifPresent(oldData -> {
+                   data.setSpikeCount(oldData.getSpikeCount());
+                });
+            });
+
             event.getOriginal().getCapability(ModCapabilities.FERUCHEMY_INSTANCE).invalidate();
             event.getOriginal().getCapability(ModCapabilities.ALLOMANCY_INSTANCE).invalidate();
+            event.getOriginal().getCapability(ModCapabilities.HEMALURGY_INSTANCE).invalidate();
             event.getOriginal().invalidateCaps();
 
         }

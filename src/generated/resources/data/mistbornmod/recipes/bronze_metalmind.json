@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IN",
+    "I I",
+    "NI "
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/bronze"
+    },
+    "N": {
+      "tag": "forge:nuggets/bronze"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:bronze_metalmind"
+  }
+}

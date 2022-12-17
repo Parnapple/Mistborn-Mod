@@ -170,6 +170,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("NI ")
                 .unlockedBy("has_material", has(ModTags.Items.ZINC_INGOT))
                 .save(p_176532_);
+        ShapedRecipeBuilder.shaped(ModItems.BRONZE_METALMIND.get())
+                .define('I', ModTags.Items.BRONZE_INGOT)
+                .define('N', ModTags.Items.BRONZE_NUGGET)
+                .pattern(" IN")
+                .pattern("I I")
+                .pattern("NI ")
+                .unlockedBy("has_material", has(ModTags.Items.BRONZE_INGOT))
+                .save(p_176532_);
+        ShapedRecipeBuilder.shaped(ModItems.DURALUMIN_METALMIND.get())
+                .define('I', ModTags.Items.DURALUMIN_INGOT)
+                .define('N', ModTags.Items.DURALUMIN_NUGGET)
+                .pattern(" IN")
+                .pattern("I I")
+                .pattern("NI ")
+                .unlockedBy("has_material", has(ModTags.Items.DURALUMIN_INGOT))
+                .save(p_176532_);
         ShapedRecipeBuilder.shaped(ModItems.NICROSIL_GOLD_METALMIND.get())
                 .define('I', ModTags.Items.NICROSIL_INGOT)
                 .define('N', ModTags.Items.NICROSIL_NUGGET)
@@ -287,6 +303,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("NI ")
                 .unlockedBy("has_material", has(ModTags.Items.NICROSIL_INGOT))
                 .save(p_176532_);
+        ShapedRecipeBuilder.shaped(ModItems.NICROSIL_DURALUMIN_METALMIND.get())
+                .define('I', ModTags.Items.NICROSIL_INGOT)
+                .define('N', ModTags.Items.NICROSIL_NUGGET)
+                .define('M', ModItems.DURALUMIN_METALMIND.get())
+                .pattern(" IN")
+                .pattern("IMI")
+                .pattern("NI ")
+                .unlockedBy("has_material", has(ModTags.Items.NICROSIL_INGOT))
+                .save(p_176532_);
+        ShapedRecipeBuilder.shaped(ModItems.NICROSIL_BRONZE_METALMIND.get())
+                .define('I', ModTags.Items.NICROSIL_INGOT)
+                .define('N', ModTags.Items.NICROSIL_NUGGET)
+                .define('M', ModItems.BRONZE_METALMIND.get())
+                .pattern(" IN")
+                .pattern("IMI")
+                .pattern("NI ")
+                .unlockedBy("has_material", has(ModTags.Items.NICROSIL_INGOT))
+                .save(p_176532_);
 
         ShapedRecipeBuilder.shaped(ModItems.METAL_HAMMER.get())
                 .define('S', ModTags.Items.STEEL_INGOT)
@@ -391,6 +425,87 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModTags.Items.DURALUMIN_INGOT)
                 .requires(ModItems.METAL_HAMMER.get())
                 .unlockedBy("has_material", has(ModItems.METAL_HAMMER.get()))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.ALUMINUM_SPIKE.get())
+                .define('I', ModTags.Items.ALUMINUM_INGOT)
+                .define('N', ModTags.Items.ALUMINUM_NUGGET)
+                .pattern(" NI")
+                .pattern("NI ")
+                .pattern("I  ")
+                .unlockedBy("has_material", has(ModTags.Items.ALUMINUM_INGOT))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.BENDALLOY_SPIKE.get())
+                .define('I', ModTags.Items.BENDALLOY_INGOT)
+                .define('N', ModTags.Items.BENDALLOY_NUGGET)
+                .pattern(" NI")
+                .pattern("NI ")
+                .pattern("I  ")
+                .unlockedBy("has_material", has(ModTags.Items.BENDALLOY_INGOT))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.BRASS_SPIKE.get())
+                .define('I', ModTags.Items.BRASS_INGOT)
+                .define('N', ModTags.Items.BRASS_NUGGET)
+                .pattern(" NI")
+                .pattern("NI ")
+                .pattern("I  ")
+                .unlockedBy("has_material", has(ModTags.Items.BRASS_INGOT))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.STEEL_SPIKE.get())
+                .define('I', ModTags.Items.STEEL_INGOT)
+                .define('N', ModTags.Items.STEEL_NUGGET)
+                .pattern(" NI")
+                .pattern("NI ")
+                .pattern("I  ")
+                .unlockedBy("has_material", has(ModTags.Items.STEEL_INGOT))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.BRONZE_SPIKE.get())
+                .define('I', ModTags.Items.BRONZE_INGOT)
+                .define('N', ModTags.Items.BRONZE_NUGGET)
+                .pattern(" NI")
+                .pattern("NI ")
+                .pattern("I  ")
+                .unlockedBy("has_material", has(ModTags.Items.BRONZE_INGOT))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.CADMIUM_SPIKE.get())
+                .define('I', ModTags.Items.CADMIUM_INGOT)
+                .define('N', ModTags.Items.CADMIUM_NUGGET)
+                .pattern(" NI")
+                .pattern("NI ")
+                .pattern("I  ")
+                .unlockedBy("has_material", has(ModTags.Items.CADMIUM_INGOT))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.ELECTRUM_SPIKE.get())
+                .define('I', ModTags.Items.ELECTRUM_INGOT)
+                .define('N', ModTags.Items.ELECTRUM_NUGGET)
+                .pattern(" NI")
+                .pattern("NI ")
+                .pattern("I  ")
+                .unlockedBy("has_material", has(ModTags.Items.ELECTRUM_INGOT))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.GOLD_SPIKE.get())
+                .define('I', Items.GOLD_INGOT)
+                .define('N', Items.GOLD_NUGGET)
+                .pattern(" NI")
+                .pattern("NI ")
+                .pattern("I  ")
+                .unlockedBy("has_material", has(Items.GOLD_INGOT))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.PEWTER_SPIKE.get())
+                .define('I', ModTags.Items.PEWTER_INGOT)
+                .define('N', ModTags.Items.PEWTER_NUGGET)
+                .pattern(" NI")
+                .pattern("NI ")
+                .pattern("I  ")
+                .unlockedBy("has_material", has(ModTags.Items.PEWTER_INGOT))
                 .save(p_176532_);
 
     }

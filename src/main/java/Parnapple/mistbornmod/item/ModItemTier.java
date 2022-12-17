@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 public enum ModItemTier implements Tier {
-    BRONZE(2, 300, 6.1F, 2.0F, 18, () -> {
+    BRONZE(2, 375, 6.5F, 1.8F, 7, () -> {
         return Ingredient.of(ModTags.Items.BRONZE_INGOT);
     }),
     STEEL(2, 400, 7.2F, 2.5F, 14, () -> {

@@ -41,40 +41,48 @@ public class C2SPushPullPacket {
         context.enqueueWork(() -> {
             // HERE WE ARE ON THE SERVER
             ServerPlayer player = context.getSender();
-            float power = 0.1f;
-            int range = 8;
-            if(this.direction.equals(Dir.UP) &&
-                    ((metalNearPlayer(player, range, Dir.DOWN) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.UP) && this.burning.equals(Metal.IRON)))) {
-                move(player, new Vec3(0, power, 0));
-            }
-            else if(this.direction.equals(Dir.DOWN) &&
-                    ((metalNearPlayer(player, range, Dir.UP) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.DOWN) && this.burning.equals(Metal.IRON)))) {
-                move(player, new Vec3(0, -power, 0));
-            }
-            else if(this.direction.equals(Dir.LEFT) &&
-                    ((metalNearPlayer(player, range, Dir.RIGHT) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.LEFT) && this.burning.equals(Metal.IRON)))) {
-                double x = player.getForward().x;
-                double z = player.getForward().z;
-                move(player, player.getForward().with(Direction.Axis.Z, -power * x).with(Direction.Axis.X, z * power));
-            }
-            else if(this.direction.equals(Dir.RIGHT) &&
-                    ((metalNearPlayer(player, range, Dir.LEFT) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.RIGHT) && this.burning.equals(Metal.IRON)))) {
-                double x = player.getForward().x;
-                double z = player.getForward().z;
-                move(player, player.getForward().with(Direction.Axis.Z, x * power).with(Direction.Axis.X, -power * z));
-            }
-            else if(this.direction.equals(Dir.FORWARD) &&
-                    ((metalNearPlayer(player, range, Dir.BACKWARD) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.FORWARD) && this.burning.equals(Metal.IRON)))) {
-                move(player, player.getForward().multiply(power, 0, power));
-            }
-            else if(this.direction.equals(Dir.BACKWARD) &&
-                    ((metalNearPlayer(player, range, Dir.FORWARD) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.BACKWARD) && this.burning.equals(Metal.IRON)))) {
-                move(player, player.getForward().reverse().multiply(power, 0, power));
-            }
+            player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
+                float power =  data.isFlaring(this.burning) ? 0.25f : 0.1f;
+                int range = data.isFlaring(this.burning) ? 12 : 8;
+                if(data.isEnhanced()) {
+                    power = 1;
+                    range = 16;
+                }
 
-            player.move(MoverType.PLAYER, player.getDeltaMovement());
+                if(this.direction.equals(Dir.UP) &&
+                        ((metalNearPlayer(player, range, Dir.DOWN) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.UP) && this.burning.equals(Metal.IRON)))) {
+                    move(player, new Vec3(0, power, 0));
+                }
+                else if(this.direction.equals(Dir.DOWN) &&
+                        ((metalNearPlayer(player, range, Dir.UP) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.DOWN) && this.burning.equals(Metal.IRON)))) {
+                    move(player, new Vec3(0, -power, 0));
+                }
+                else if(this.direction.equals(Dir.LEFT) &&
+                        ((metalNearPlayer(player, range, Dir.RIGHT) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.LEFT) && this.burning.equals(Metal.IRON)))) {
+                    double x = player.getForward().x;
+                    double z = player.getForward().z;
+                    move(player, player.getForward().with(Direction.Axis.Z, -power * x).with(Direction.Axis.X, z * power));
+                }
+                else if(this.direction.equals(Dir.RIGHT) &&
+                        ((metalNearPlayer(player, range, Dir.LEFT) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.RIGHT) && this.burning.equals(Metal.IRON)))) {
+                    double x = player.getForward().x;
+                    double z = player.getForward().z;
+                    move(player, player.getForward().with(Direction.Axis.Z, x * power).with(Direction.Axis.X, -power * z));
+                }
+                else if(this.direction.equals(Dir.FORWARD) &&
+                        ((metalNearPlayer(player, range, Dir.BACKWARD) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.FORWARD) && this.burning.equals(Metal.IRON)))) {
+                    move(player, player.getForward().multiply(power, 0, power));
+                }
+                else if(this.direction.equals(Dir.BACKWARD) &&
+                        ((metalNearPlayer(player, range, Dir.FORWARD) && this.burning.equals(Metal.STEEL)) || (metalNearPlayer(player, range, Dir.BACKWARD) && this.burning.equals(Metal.IRON)))) {
+                    move(player, player.getForward().reverse().multiply(power, 0, power));
+                }
 
-            player.fallDistance  = 0;
+                player.move(MoverType.PLAYER, player.getDeltaMovement());
+
+                player.fallDistance  = 0;
+            });
+
 
         });
         return true;
