@@ -3,6 +3,7 @@ package Parnapple.mistbornmod;
 import Parnapple.mistbornmod.block.ModBlocks;
 import Parnapple.mistbornmod.block.container.ModContainers;
 import Parnapple.mistbornmod.crafting.ModRecipeSerializers;
+import Parnapple.mistbornmod.entity.ModEntities;
 import Parnapple.mistbornmod.event.ModCapEvents;
 import Parnapple.mistbornmod.block.entity.ModBlockEntityTypes;
 import Parnapple.mistbornmod.capability.ModCapabilities;
@@ -42,6 +43,7 @@ public class MistbornBaseMod
         VillagerProfessions.register(eventBus);
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModEntities.register(eventBus);
         ModBlockEntityTypes.register(eventBus);
         ModContainers.register(eventBus);
         ModRecipeSerializers.register(eventBus);

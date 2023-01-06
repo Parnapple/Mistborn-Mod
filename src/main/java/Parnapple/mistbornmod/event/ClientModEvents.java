@@ -1,31 +1,28 @@
 package Parnapple.mistbornmod.event;
 
 import Parnapple.mistbornmod.block.container.ModContainers;
-import Parnapple.mistbornmod.capability.ModCapabilities;
 import Parnapple.mistbornmod.client.AllomancyHudOverlay;
 import Parnapple.mistbornmod.client.ClientAllomancyData;
-import Parnapple.mistbornmod.network.C2SBurnUpdatePacket;
-import Parnapple.mistbornmod.network.C2SPushPullPacket;
-import Parnapple.mistbornmod.network.ModPackets;
-import Parnapple.mistbornmod.network.S2CSyncAllomancerDataPacket;
+import Parnapple.mistbornmod.entity.ModEntities;
+import Parnapple.mistbornmod.network.*;
 import Parnapple.mistbornmod.screen.AllomancyScreen;
 import Parnapple.mistbornmod.screen.MetallurgyFurnaceScreen;
 import Parnapple.mistbornmod.MistbornBaseMod;
 import Parnapple.mistbornmod.util.Metal;
 import Parnapple.mistbornmod.util.keys.ModKeyMappings;
-import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.Options;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.lwjgl.glfw.GLFW;
 
 import static net.minecraftforge.client.gui.ForgeIngameGui.HOTBAR_ELEMENT;
 
@@ -66,6 +63,20 @@ public class ClientModEvents {
             }
 
         }
+
+        @SubscribeEvent
+        public static void onMouseInput(InputEvent.MouseInputEvent event) {
+            if(mc.isPaused() || mc.screen != null) {
+                return;
+            }
+
+            if(ClientAllomancyData.isBurning(Metal.STEEL) && event.getAction() == GLFW.GLFW_PRESS && event.getButton() == GLFW.GLFW_MOUSE_BUTTON_LEFT) {
+                ModPackets.sendToServer(new C2SShootCoinPacket());
+            }
+            if(ClientAllomancyData.isBurning(Metal.IRON) && event.getAction() == GLFW.GLFW_PRESS  && event.getButton() == GLFW.GLFW_MOUSE_BUTTON_RIGHT) {
+                ModPackets.sendToServer(new C2SIronPullEntitiesPacket());
+            }
+        }
     }
 
     @Mod.EventBusSubscriber(modid = MistbornBaseMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -78,6 +89,10 @@ public class ClientModEvents {
             OverlayRegistry.registerOverlayAbove(HOTBAR_ELEMENT, "allomancy", AllomancyHudOverlay.ALLOMANCY_HUD);
         }
 
+        @SubscribeEvent
+        public static void registerEntityRenders(final EntityRenderersEvent.RegisterRenderers e) {
+            e.registerEntityRenderer(ModEntities.COIN_PROJECTILE.get(), ThrownItemRenderer::new);
+        }
 
     }
 }

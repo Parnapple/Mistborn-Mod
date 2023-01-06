@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "mistbornmod:aluminum_nugget",
+    "mistbornmod:bendalloy_nugget",
+    "mistbornmod:bismuth_nugget",
+    "mistbornmod:brass_nugget",
+    "mistbornmod:bronze_nugget",
+    "mistbornmod:cadmium_nugget",
+    "mistbornmod:chromium_nugget",
+    "mistbornmod:copper_nugget",
+    "mistbornmod:duralumin_nugget",
+    "mistbornmod:electrum_nugget",
+    "mistbornmod:lead_nugget",
+    "mistbornmod:nickel_nugget",
+    "mistbornmod:nicrosil_nugget",
+    "mistbornmod:pewter_nugget",
+    "mistbornmod:silver_nugget",
+    "mistbornmod:steel_nugget",
+    "mistbornmod:tin_nugget",
+    "mistbornmod:zinc_nugget",
+    "minecraft:iron_nugget",
+    "minecraft:gold_nugget"
+
+  ]
+}

@@ -134,6 +134,7 @@
   "item.mistbornmod.bendalloy_spike": "Bendalloy Spike",
 
   "item.mistbornmod.metal_hammer": "Metal Shaping Hammer",
+  "item.mistbornmod.coin_pouch": "Coin Pouch",
 
   "block.mistbornmod.tin_block": "Tin Block",
   "block.mistbornmod.tin_ore": "Tin Ore",
@@ -171,7 +172,10 @@
   "block.mistbornmod.duralumin_block": "Duralumin Block",
   "block.mistbornmod.metallurgy_furnace_block": "Metallurgy Furnace",
 
+  "entity.mistbornmod.coin_projectile": "Flying Coin",
+
   "itemGroup.mistborn_mod_tab": "Mistborn Base Mod",
+
   "tooltip.mistbornmod.metalmind": "Right Clicking while sneaking to store. Right click to tap",
   "tooltip.mistbornmod.metalmind_shift": "Press SHIFT to see charge",
 
@@ -189,7 +193,9 @@
   "effect.mistbornmod.mental_slowdown": "Mental Slowdown",
   "effect.mistbornmod.disconnect": "Disconnect",
   "effect.mistbornmod.awake": "Awake",
+
   "death.attack.wounds": "%1$s bled to death",
+  "death.attack.allomancy": "%1$s was shot by %2$s using Allomancy",
 
   "commands.mistbornmod.clear_feruchemy": "Cleared feruchemal powers",
   "commands.mistbornmod.add_all_feruchemy": "Added all feruchemal powers",
