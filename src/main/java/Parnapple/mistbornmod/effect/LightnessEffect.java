@@ -14,6 +14,7 @@ public class LightnessEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int pAmplifier) {
         entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 1,pAmplifier, true, false, false));
+        entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 1,pAmplifier, true, false, false));
         //rest of functionality in ModEvents class
     }
 

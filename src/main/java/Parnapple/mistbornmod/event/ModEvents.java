@@ -5,6 +5,7 @@ import Parnapple.mistbornmod.capability.ModCapabilities;
 import Parnapple.mistbornmod.command.AllomancyCommand;
 import Parnapple.mistbornmod.command.FeruchemyCommand;
 import Parnapple.mistbornmod.effect.ModEffects;
+import Parnapple.mistbornmod.entity.CoinProjectileEntity;
 import Parnapple.mistbornmod.item.custom.HemalurgicSpikeItem;
 import Parnapple.mistbornmod.network.ModPackets;
 import Parnapple.mistbornmod.network.S2CSyncAllomancerDataPacket;
@@ -374,7 +375,7 @@ public class ModEvents {
                         //player.displayClientMessage(new TextComponent("Gold pos: " + pos), true);
                         if(data.isEnhanced()) {
                             ResourceKey<Level> dim = data.getDeathDimension();
-                            if(!player.level.dimension().equals(dim)) {
+                            if((!player.level.dimension().equals(dim)) && (data.getDeathDimension() != null)) {
                                 player.changeDimension(level.getServer().getLevel(dim));
                             }
                             player.teleportToWithTicket(deathPos.getX(), deathPos.getY()+3, deathPos.getZ());
@@ -491,10 +492,10 @@ public class ModEvents {
     public static void onDeath(LivingDeathEvent event) {
         if(event.getEntityLiving() instanceof ServerPlayer player) {
             //player.displayClientMessage(new TextComponent("Player died"), false);
-            player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
-                data.setDeathPos(new BlockPos(player.position()), player.level.dimension().location().toString());
-                //player.displayClientMessage(new TextComponent("DeathPos updated"), false);
-            });
+//            player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
+//                data.setDeathPos(new BlockPos(player.position()), player.level.dimension().location().toString());
+//                //player.displayClientMessage(new TextComponent("DeathPos updated"), false);
+//            });
             if(event.getSource().getEntity() instanceof LivingEntity entity) {
                 if(entity.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof HemalurgicSpikeItem spike) {
                     spike.onPlayerKill(player, entity.getItemInHand(InteractionHand.MAIN_HAND));

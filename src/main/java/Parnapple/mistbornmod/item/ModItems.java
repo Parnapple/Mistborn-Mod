@@ -450,6 +450,9 @@ public class ModItems {
     public static final RegistryObject<Item> BENDALLOY_SPIKE = ITEMS.register("bendalloy_spike",
             () -> new HemalurgicSpikeItem(Metal.BENDALLOY));
 
+    public static final RegistryObject<Item> COIN_POUCH = ITEMS.register("coin_pouch",
+            () -> new CoinPouchItem(new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

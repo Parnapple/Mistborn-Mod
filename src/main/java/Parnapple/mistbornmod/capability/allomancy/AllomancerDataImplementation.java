@@ -259,6 +259,7 @@ public class AllomancerDataImplementation implements IAllomancerData {
     public ResourceKey<Level> getDeathDimension() {
         if (this.deathPos == null) {
             return null;
+//            ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation());
         }
         return ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(this.deathDim));
     }

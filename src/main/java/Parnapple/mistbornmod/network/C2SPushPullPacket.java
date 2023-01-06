@@ -1,12 +1,17 @@
 package Parnapple.mistbornmod.network;
 
 import Parnapple.mistbornmod.capability.ModCapabilities;
+import Parnapple.mistbornmod.entity.CoinProjectileEntity;
 import Parnapple.mistbornmod.util.Metal;
 import Parnapple.mistbornmod.util.MetalUtil;
+import Parnapple.mistbornmod.util.ModTags;
 import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -94,7 +99,7 @@ public class C2SPushPullPacket {
         player.fallDistance  = 0;
     }
 
-    private static boolean metalNearPlayer(ServerPlayer player, int range, Dir direction) {
+    private boolean metalNearPlayer(ServerPlayer player, int range, Dir direction) {
 
         Level level = player.level;
         AABB boundingBox = player.getBoundingBox().inflate(range);
@@ -121,7 +126,31 @@ public class C2SPushPullPacket {
 
         boundingBox = boundingBox.move(move);
 
-        return level.getBlockStates(boundingBox).filter(state -> MetalUtil.isBlockMetal(state.getBlock())).toArray().length > 0;
+        boolean result = level.getBlockStates(boundingBox).filter(state -> MetalUtil.isBlockMetal(state.getBlock())).toArray().length > 0;
+
+        if(!result) {
+            result = level.getEntitiesOfClass(Entity.class, boundingBox).stream().filter(MetalUtil::isEntityMetal).toList().size() > 0;
+        }
+
+//        if(!result && this.burning == Metal.STEEL) {
+//            ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND).is(ModTags.Items.NUGGETS) ? player.getItemInHand(InteractionHand.MAIN_HAND) : player.getItemInHand(InteractionHand.OFF_HAND);
+//            if(stack.is(ModTags.Items.NUGGETS)) {
+//                stack.shrink(1);
+////                    ThrownTrident coin = new ThrownTrident(level, player, new ItemStack(stack.getItem()));
+//                CoinProjectileEntity coin = new CoinProjectileEntity(level, player, new ItemStack(stack.getItem()));
+//                double dx = move.x();
+//                double dy = move.y();
+//                double dz = move.z();
+//                coin.shoot(dx, dy, dz, 2.5F, 0.0F);
+//
+//                level.addFreshEntity(coin);
+//            }
+//        }
+
+
+
+
+        return result;
     }
 
 }

@@ -36,6 +36,16 @@ public class ModPackets {
                 .encoder(C2SPushPullPacket::toBytes)
                 .consumer(C2SPushPullPacket::handle)
                 .add();
+        net.messageBuilder(C2SShootCoinPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(C2SShootCoinPacket::new)
+                .encoder(C2SShootCoinPacket::toBytes)
+                .consumer(C2SShootCoinPacket::handle)
+                .add();
+        net.messageBuilder(C2SIronPullEntitiesPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(C2SIronPullEntitiesPacket::new)
+                .encoder(C2SIronPullEntitiesPacket::toBytes)
+                .consumer(C2SIronPullEntitiesPacket::handle)
+                .add();
         net.messageBuilder(S2CSyncAllomancerDataPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(S2CSyncAllomancerDataPacket::new)
                 .encoder(S2CSyncAllomancerDataPacket::toBytes)

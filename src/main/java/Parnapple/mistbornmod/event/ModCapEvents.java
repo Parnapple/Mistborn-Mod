@@ -7,6 +7,7 @@ import Parnapple.mistbornmod.capability.hemalurgy.HemalurgyCapabilityProvider;
 import Parnapple.mistbornmod.network.ModPackets;
 import Parnapple.mistbornmod.network.S2CSyncAllomancerDataPacket;
 import Parnapple.mistbornmod.util.Metal;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -56,7 +57,13 @@ public class ModCapEvents {
 
             player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
                 event.getOriginal().getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(oldData -> {
-                    data.setDeathPos(oldData.getDeathPos(), oldData.getDeathDimension().location().toString());
+                    if(event.isWasDeath()) {
+                        Player oldPlayer = event.getOriginal();
+                        data.setDeathPos(new BlockPos(oldPlayer.position()), oldPlayer.level.dimension().location().toString());
+                    } else if(data.getDeathDimension() != null) {
+                        data.setDeathPos(oldData.getDeathPos(), oldData.getDeathDimension().location().toString());
+                    }
+
                     data.setSpawnPos(oldData.getSpawnPos(), oldData.getSpawnDimension().location().toString());
 
                     for(Metal metal: Metal.values()) {

@@ -42,6 +42,8 @@ public class ModTags {
         public static final TagKey<Item> BENDALLOY_INGOT = createForgeTag("ingots/bendalloy");
         public static final TagKey<Item> DURALUMIN_INGOT = createForgeTag("ingots/duralumin");
 
+        public static final TagKey<Item> NUGGETS = createForgeTag("nuggets");
+
         public static final TagKey<Item> TIN_NUGGET = createForgeTag("nuggets/tin");
         public static final TagKey<Item> PEWTER_NUGGET = createForgeTag("nuggets/pewter");
         public static final TagKey<Item> BRONZE_NUGGET = createForgeTag("nuggets/bronze");
