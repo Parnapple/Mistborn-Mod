@@ -8,6 +8,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -506,6 +507,26 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("NI ")
                 .pattern("I  ")
                 .unlockedBy("has_material", has(ModTags.Items.PEWTER_INGOT))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.DUELING_CANE.get())
+                .define('H', Tags.Items.RODS_WOODEN)
+                .define('W', ItemTags.PLANKS)
+                .define('S', Items.STRING)
+                .pattern(" W ")
+                .pattern(" W ")
+                .pattern("WHS")
+                .unlockedBy("has_material", has(Items.STRING))
+                .save(p_176532_);
+
+        ShapedRecipeBuilder.shaped(ModItems.HARDWOOD_DUELING_CANE.get())
+                .define('H', Tags.Items.RODS_WOODEN)
+                .define('W', ItemTags.LOGS)
+                .define('S', Items.STRING)
+                .pattern(" W ")
+                .pattern(" W ")
+                .pattern("WHS")
+                .unlockedBy("has_material", has(Items.STRING))
                 .save(p_176532_);
 
     }
