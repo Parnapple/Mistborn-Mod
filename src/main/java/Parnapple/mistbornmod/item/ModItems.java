@@ -1,10 +1,12 @@
 package Parnapple.mistbornmod.item;
 
 import Parnapple.mistbornmod.MistbornBaseMod;
+import Parnapple.mistbornmod.entity.ModEntities;
 import Parnapple.mistbornmod.item.custom.*;
 import Parnapple.mistbornmod.util.Metal;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -452,6 +454,16 @@ public class ModItems {
 
     public static final RegistryObject<Item> COIN_POUCH = ITEMS.register("coin_pouch",
             () -> new CoinPouchItem(new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> DUELING_CANE = ITEMS.register("dueling_cane",
+            () -> new SwordItem(Tiers.WOOD, 4, 1.2f, new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> HARDWOOD_DUELING_CANE = ITEMS.register("hardwood_dueling_cane",
+            () -> new SwordItem(ModItemTier.HARDWOOD, 5, 1.0f, new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> MISTAGER_PEWTER_SPAWN_EGG = ITEMS.register("mistager_pewter_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_PEWTER,5451574, 0x37573c,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

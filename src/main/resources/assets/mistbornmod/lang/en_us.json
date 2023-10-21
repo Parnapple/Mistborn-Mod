@@ -132,9 +132,11 @@
   "item.mistbornmod.nicrosil_spike": "Nicrosil Spike",
   "item.mistbornmod.cadmium_spike": "Cadmium Spike",
   "item.mistbornmod.bendalloy_spike": "Bendalloy Spike",
-
+  "item.mistbornmod.dueling_cane": "Dueling Cane",
+  "item.mistbornmod.hardwood_dueling_cane": "Hardwood Dueling Cane",
   "item.mistbornmod.metal_hammer": "Metal Shaping Hammer",
   "item.mistbornmod.coin_pouch": "Coin Pouch",
+  "item.mistbornmod.mistager_pewter_spawn_egg": "Illager Thug Spawn Egg",
 
   "block.mistbornmod.tin_block": "Tin Block",
   "block.mistbornmod.tin_ore": "Tin Ore",
@@ -173,6 +175,7 @@
   "block.mistbornmod.metallurgy_furnace_block": "Metallurgy Furnace",
 
   "entity.mistbornmod.coin_projectile": "Flying Coin",
+  "entity.mistbornmod.mistager_pewter": "Illager Thug",
 
   "itemGroup.mistborn_mod_tab": "Mistborn Base Mod",
 

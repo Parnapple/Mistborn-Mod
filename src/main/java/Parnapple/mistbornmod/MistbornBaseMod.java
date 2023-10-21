@@ -4,6 +4,7 @@ import Parnapple.mistbornmod.block.ModBlocks;
 import Parnapple.mistbornmod.block.container.ModContainers;
 import Parnapple.mistbornmod.crafting.ModRecipeSerializers;
 import Parnapple.mistbornmod.entity.ModEntities;
+import Parnapple.mistbornmod.entity.custom.MistagerPewterRenderer;
 import Parnapple.mistbornmod.event.ModCapEvents;
 import Parnapple.mistbornmod.block.entity.ModBlockEntityTypes;
 import Parnapple.mistbornmod.capability.ModCapabilities;
@@ -12,15 +13,18 @@ import Parnapple.mistbornmod.effect.ModEffects;
 import Parnapple.mistbornmod.entity.villager.VillagerProfessions;
 import Parnapple.mistbornmod.item.ModItems;
 import Parnapple.mistbornmod.network.ModPackets;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.commands.synchronization.ArgumentTypes;
 import net.minecraft.commands.synchronization.EmptyArgumentSerializer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MistbornBaseMod.MOD_ID)
@@ -51,6 +55,9 @@ public class MistbornBaseMod
 
 
         eventBus.addListener(this::setup);
+        eventBus.addListener(this::clientSetup);
+
+        GeckoLib.initialize();
 
         /*
         // Register the enqueueIMC method for modloading
@@ -81,7 +88,9 @@ public class MistbornBaseMod
         ArgumentTypes.register("feruchemy_argument", MetalArgumentType.class, new EmptyArgumentSerializer<>(() -> MetalArgumentType.INSTANCE));
     }
 
-
+    private void clientSetup(final FMLClientSetupEvent event) {
+        EntityRenderers.register(ModEntities.MISTAGER_PEWTER.get(), MistagerPewterRenderer::new);
+    }
 
 
     /*

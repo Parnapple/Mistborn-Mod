@@ -1,6 +1,7 @@
 package Parnapple.mistbornmod.item;
 
 import Parnapple.mistbornmod.util.ModTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Items;
@@ -25,6 +26,9 @@ public enum ModItemTier implements Tier {
     }),
     GLASS(2, 2, 25F, 9.5F, 7, () -> {
         return Ingredient.of(Tags.Items.GLASS);
+    }),
+    HARDWOOD(0, 118, 2.0F, 0.5F, 14, () -> {
+        return Ingredient.of(ItemTags.LOGS);
     });
 
 
