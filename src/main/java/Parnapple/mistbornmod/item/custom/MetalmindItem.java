@@ -145,7 +145,16 @@ public class MetalmindItem extends Item {
                                 if(duration > 0)
                                     entity.addEffect(new MobEffectInstance(this.type.getFeruchemalPower().getTappingEffect(), duration, tapping-1, false, false, true));
 
-                                pStack.getTag().putInt("feruchemalCharge",  charge - tapping);
+                                entity.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
+                                    entity.getCapability(ModCapabilities.FERUCHEMY_INSTANCE).ifPresent(data2 -> {
+
+                                        if (data.isBurning(this.type) && data2.hasPower(this.type)) {//Compounding -> if the player is also burning the metal, they can tap w/o losing storage
+                                            data.setStore(this.type, data.getStore(this.type) - tapping);
+                                        } else {
+                                            pStack.getTag().putInt("feruchemalCharge", charge - tapping);
+                                        }
+                                    });
+                                });
                             }
 
 
@@ -176,7 +185,17 @@ public class MetalmindItem extends Item {
                             if(duration > 0)
                                 entity.addEffect(new MobEffectInstance(this.type.getFeruchemalPower().getStoringEffect(), duration, storing-1, false, false, true));
 
-                            pStack.getTag().putInt("feruchemalCharge",  charge + storing);
+                            entity.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
+                                entity.getCapability(ModCapabilities.FERUCHEMY_INSTANCE).ifPresent(data2 -> {
+                                    int multiplier = 1;
+                                    if(data.isBurning(this.type) && data2.hasPower(this.type)) {//Compounding -> storing is accelerated when also burnign the metal
+                                        data.setStore(this.type, data.getStore(this.type) - storing);
+                                        multiplier = 10;
+                                    }
+                                    pStack.getTag().putInt("feruchemalCharge",  charge + storing * multiplier);
+                                });
+                            });
+
                         }
                     } else if(charge == 0 && storing == 0 && !this.isNicrosil) {
                         removeTags(pStack);
@@ -303,5 +322,6 @@ public class MetalmindItem extends Item {
             itemstack.getTag().putString("feruchemyUUID", "");
         }
     }
+
 
 }

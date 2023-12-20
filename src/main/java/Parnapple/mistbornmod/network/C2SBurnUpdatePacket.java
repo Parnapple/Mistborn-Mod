@@ -43,7 +43,7 @@ public class C2SBurnUpdatePacket {
                 if(this.metal == Metal.DURALUMIN && !data.isBurning(Metal.DURALUMIN)) {
                     data.setEnhanced(false);
                 }
-                ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(this.metal, data.getStore(this.metal), data.isBurning(this.metal)), player);
+                ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(this.metal, data.getStore(this.metal), data.isBurning(this.metal), data.isFlaring(metal)), player);
             });
         });
         return true;

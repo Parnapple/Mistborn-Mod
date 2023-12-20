@@ -93,13 +93,13 @@ public class AllomancerDataImplementation implements IAllomancerData {
     @Override
     public void givePower(Metal metal) {
         this.powers[metal.getIndex()] = true;
-        this.everAllomancer = false;
+        this.everAllomancer = true;
     }
 
     @Override
     public void giveAllPowers() {
         Arrays.fill(this.powers, true);
-        this.everAllomancer = false;
+        this.everAllomancer = true;
     }
 
     @Override
