@@ -7,6 +7,7 @@ import java.util.Arrays;
 public class ClientAllomancyData {
     private static final int[] stores = new int[Metal.values().length];
     private static final boolean[] burning = new boolean[Metal.values().length];
+    private static final boolean[] flaring = new boolean[Metal.values().length];
     private static final boolean[] powers = new boolean[Metal.values().length];
     private static int goldCompassPos = 0;
     private static int electrumCompassPos = 0;
@@ -19,12 +20,20 @@ public class ClientAllomancyData {
         burning[metal.getIndex()] = burn;
     }
 
+    public static void setFlaring(Metal metal, boolean flare) {
+        flaring[metal.getIndex()] = flare;
+    }
+
     public static int get(Metal metal) {
         return stores[metal.getIndex()];
     }
 
     public static boolean isBurning(Metal metal) {
         return burning[metal.getIndex()];
+    }
+
+    public static boolean isFlaring(Metal metal) {
+        return flaring[metal.getIndex()];
     }
 
     public static Metal[] getPowers() {

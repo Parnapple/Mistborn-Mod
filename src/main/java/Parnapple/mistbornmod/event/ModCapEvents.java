@@ -76,7 +76,7 @@ public class ModCapEvents {
                                 data.setStore(mt, oldData.getStore(mt));
                             }
                         }
-                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(metal, data.getStore(metal), data.isBurning(metal)), player);
+                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(metal, data.getStore(metal), data.isBurning(metal), data.isFlaring(metal)), player);
                     }
                 });
             });

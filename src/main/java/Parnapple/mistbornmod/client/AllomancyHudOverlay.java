@@ -11,6 +11,8 @@ import net.minecraftforge.client.gui.IIngameOverlay;
 public class AllomancyHudOverlay {
     private static final ResourceLocation BURNING = new ResourceLocation(MistbornBaseMod.MOD_ID,
             "textures/allomancy/burning.png");
+    private static final ResourceLocation FLARING = new ResourceLocation(MistbornBaseMod.MOD_ID,
+            "textures/allomancy/flaring.png");
     private static final ResourceLocation ELECTRUM_COMPASS = new ResourceLocation(MistbornBaseMod.MOD_ID,
             "textures/gui/electrum_compass.png");
     private static final ResourceLocation GOLD_COMPASS = new ResourceLocation(MistbornBaseMod.MOD_ID,
@@ -73,7 +75,7 @@ public class AllomancyHudOverlay {
                     GuiComponent.blit(poseStack, (x-(width/2)) +  10 + (mt.ordinal()*5), y - (i*2), 0, 0, 4, 4, 4, 4);
                 }
 
-                RenderSystem.setShaderTexture(0, BURNING);
+                RenderSystem.setShaderTexture(0, ClientAllomancyData.isFlaring(mt) ? FLARING: BURNING);
                 if(ClientAllomancyData.isBurning(mt)) {
                     GuiComponent.blit(poseStack, (x-(width/2)) +  10 + (mt.ordinal()*5), y - ((ClientAllomancyData.get(mt) / 250) * 2), 0, 0, 4, 4, 4, 4);
                 }

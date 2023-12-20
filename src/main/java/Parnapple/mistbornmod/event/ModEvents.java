@@ -158,10 +158,10 @@ public class ModEvents {
                         byte randomMetal = (byte) (Math.random() * Metal.values().length);
                         data.givePower(Metal.getMetal(randomMetal));
                         Metal power = Metal.getMetal(randomMetal);
-                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(power, data.getStore(power), data.isBurning(power)), player);
+                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(power, data.getStore(power), data.isBurning(power), data.isFlaring(power)), player);
                     }
                     for(Metal mt: Metal.values()) {
-                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(mt, data.getStore(mt), data.isBurning(mt)), player);
+                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(mt, data.getStore(mt), data.isBurning(mt), data.isFlaring(mt)), player);
                     }
                     ModPackets.sendToPlayer(new S2CSyncAllomancyPowerDataPacket(data.getPowers()), player);
                 });
@@ -207,7 +207,7 @@ public class ModEvents {
 //                                player.displayClientMessage(new TextComponent("You are flaring: " + mt.getName()), true);
                             data.setStore(mt, data.getStore(mt) - burnPower);
                         }
-                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(mt, data.getStore(mt), data.isBurning(mt)), (ServerPlayer) player);
+                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(mt, data.getStore(mt), data.isBurning(mt), data.isFlaring(mt)), (ServerPlayer) player);
                     } else {
                         data.toggleFlaring(mt, false);
                     }
@@ -238,7 +238,7 @@ public class ModEvents {
                 if(data.isBurning(Metal.ALUMINUM)) {
                     for(Metal mt: Metal.values()) {
                         data.setStore(mt, 0);
-                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(mt, data.getStore(mt), data.isBurning(mt)), (ServerPlayer) player);
+                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(mt, data.getStore(mt), data.isBurning(mt), data.isFlaring(mt)), (ServerPlayer) player);
                     }
                 }
 
