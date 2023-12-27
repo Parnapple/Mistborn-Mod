@@ -64,7 +64,8 @@ public class ModCapEvents {
                         data.setDeathPos(oldData.getDeathPos(), oldData.getDeathDimension().location().toString());
                     }
 
-                    data.setSpawnPos(oldData.getSpawnPos(), oldData.getSpawnDimension().location().toString());
+                    if(data.getSpawnDimension() != null)
+                        data.setSpawnPos(oldData.getSpawnPos(), oldData.getSpawnDimension().location().toString());
 
                     for(Metal metal: Metal.values()) {
                         if(oldData.hasPower(metal)) {
