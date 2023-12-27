@@ -42,6 +42,10 @@ Filling the metalmind can be done normally, and as long as nicrosil is one of yo
 
 For anyone to be able to use it, you will also have to make it unkeyed(just start filling an aluminum mind before you start filling it).
 
+Compounding
+~~~~~~~~~~~~~~~~~~~
+If you are tapping from a metalmind while also burning that same metal, your allomantic reserves are drained rather than your feruchemal stores. If you are storing in a metalmind while burning the same metal, storing is ten times faster and your allomantic reserves get drained. Compounding only works if you have the ability to use both the feruchemal and allomantic power for the same metal, so you can't compound with an unsealed metalmind unless you could use that type of metalmind normally.
+
 
 Allomancy
 **************
@@ -53,8 +57,15 @@ Press the 'v' key to burn your metal. If you have multiple metals, a HUD will ap
 
 Flaring
 ~~~~~~~~~~~~~~~~~~~
-Press ctrl while pressing 'v' or clicking the metal button to flare your metal. It will burn twice as fast, but the effects will be twice as strong.
+Press ctrl while pressing 'v' or clicking the metal button to flare your metal. It will burn twice as fast, but the effects will be twice as strong. The burning indicator will also be blue, not yellow.
 
 Duralumin/Nicrosil boosting
 ~~~~~~~~~~~~~~~~~~~
 If you burn duralumin or are hit by someone burning nicrosil, all of your metals will be dramatically enhanced. This can have unexpected effects.
+
+
+Hemallurgy
+
+**************
+
+Spikes can be crafted from various metals. Each type of spike steals a different allomantic or feruchemic power when you kill a player with it. The powers that can be stolen with each type of spike are accurate with the books. Using an Invested (meaning it has been used to steal someone's power) spike grants you that power.Currently, no other attributes (like strength, identity, etc.) can be stolen with spikes. Eventually I might make this system better.

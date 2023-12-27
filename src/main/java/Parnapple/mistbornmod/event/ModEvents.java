@@ -156,8 +156,9 @@ public class ModEvents {
                 player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
                     if(!data.isAllomancer() && !data.everAllomancer()) {
                         byte randomMetal = (byte) (Math.random() * Metal.values().length);
-                        data.givePower(Metal.getMetal(randomMetal));
                         Metal power = Metal.getMetal(randomMetal);
+                        data.givePower(power);
+                        data.setSpawnPos(player.getRespawnPosition(), player.getRespawnDimension().location().toString());
                         ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(power, data.getStore(power), data.isBurning(power), data.isFlaring(power)), player);
                     }
                     for(Metal mt: Metal.values()) {
@@ -511,7 +512,6 @@ public class ModEvents {
                 data.setSpawnPos(event.getNewSpawn(), event.getSpawnWorld().location().toString());
             });
         }
-
     }
 
     private static boolean isAggressiveGoal(Goal goal) {
