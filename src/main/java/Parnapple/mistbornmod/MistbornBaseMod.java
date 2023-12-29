@@ -4,7 +4,7 @@ import Parnapple.mistbornmod.block.ModBlocks;
 import Parnapple.mistbornmod.block.container.ModContainers;
 import Parnapple.mistbornmod.crafting.ModRecipeSerializers;
 import Parnapple.mistbornmod.entity.ModEntities;
-import Parnapple.mistbornmod.entity.custom.MistagerPewterRenderer;
+import Parnapple.mistbornmod.entity.client.MistagerPewterRenderer;
 import Parnapple.mistbornmod.event.ModCapEvents;
 import Parnapple.mistbornmod.block.entity.ModBlockEntityTypes;
 import Parnapple.mistbornmod.capability.ModCapabilities;

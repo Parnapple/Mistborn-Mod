@@ -72,7 +72,7 @@ public class FeruchemyCommand {
             data.removePower(metal);
         });
 
-        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.added_feruchemy");
+        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.cleared_feruchemy");
         TextComponent message = new TextComponent(messageBase.getString() + type);
 
         context.getSource().sendSuccess(message, true);

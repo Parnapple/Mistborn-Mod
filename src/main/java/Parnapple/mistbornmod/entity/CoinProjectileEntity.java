@@ -85,7 +85,8 @@ public class CoinProjectileEntity extends AbstractArrow implements ItemSupplier 
 
     @Override
     public ItemStack getItem() {
-        return this.nuggetItem.equals(ItemStack.EMPTY) ? new ItemStack(Items.IRON_NUGGET) : this.nuggetItem;
+        return this.getPickupItem().equals(ItemStack.EMPTY) ? new ItemStack(Items.IRON_NUGGET) : this.getPickupItem();
+//        return this.nuggetItem.equals(ItemStack.EMPTY) ? new ItemStack(Items.IRON_NUGGET) : this.nuggetItem;
 //        return this.nuggetItem.copy();
 //        return new ItemStack(this.nuggetItem.getItem());
     }

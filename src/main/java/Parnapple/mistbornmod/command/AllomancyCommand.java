@@ -79,7 +79,7 @@ public class AllomancyCommand {
             ModPackets.sendToPlayer(new S2CSyncAllomancyPowerDataPacket(data.getPowers()), player);
         });
 
-        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.added_allomancy");
+        TranslatableComponent messageBase = new TranslatableComponent("commands.mistbornmod.cleared_allomancy");
         TextComponent message = new TextComponent(messageBase.getString() + type);
 
         context.getSource().sendSuccess(message, true);
