@@ -319,10 +319,10 @@ public class ModEvents {
 
                 if(data.isBurning(Metal.BENDALLOY) && !data.isBurning(Metal.CADMIUM)) {
                     if(!level.isClientSide()) {
-                        int range = data.isFlaring(Metal.BENDALLOY) ? 8 : 4;
+                        int range = data.isFlaring(Metal.BENDALLOY) ? 6 : 3;
                         int power = data.isFlaring(Metal.BENDALLOY) ? 6 : 3;
                         if(data.isEnhanced()) {
-                            range = 16;
+                            range = 12;
                             power = 12;
                         }
                         AABB withinRange = player.getBoundingBox().inflate(range);
@@ -370,7 +370,8 @@ public class ModEvents {
                 if(data.isBurning(Metal.GOLD)) {
                     BlockPos deathPos = data.getDeathPos();
                     if(deathPos != null) {
-                        //player.displayClientMessage(new TextComponent("Last death: " + deathPos.toString()), true);
+                        if(data.isFlaring(Metal.GOLD))
+                            player.displayClientMessage(new TextComponent(deathPos.toString()), true);
 
                         int pos = getCompassPos(deathPos, player);
                         //player.displayClientMessage(new TextComponent("Gold pos: " + pos), true);
@@ -417,7 +418,8 @@ public class ModEvents {
 
                     ModPackets.sendToPlayer(new S2CSyncGECompassDataPacket(2, pos), (ServerPlayer) player);
 
-                    //player.displayClientMessage(new TextComponent("Spawn point: " + spawnPos.toString()), true);
+                    if(data.isFlaring(Metal.ELECTRUM))
+                        player.displayClientMessage(new TextComponent(spawnPos.toString()), true);
                 }
 
                 if(data.isBurning(Metal.BRONZE)) {
@@ -491,18 +493,17 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void onDeath(LivingDeathEvent event) {
-        if(event.getEntityLiving() instanceof ServerPlayer player) {
-            //player.displayClientMessage(new TextComponent("Player died"), false);
-//            player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
-//                data.setDeathPos(new BlockPos(player.position()), player.level.dimension().location().toString());
-//                //player.displayClientMessage(new TextComponent("DeathPos updated"), false);
-//            });
-            if(event.getSource().getEntity() instanceof LivingEntity entity) {
-                if(entity.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof HemalurgicSpikeItem spike) {
+        if(event.getSource().getEntity() instanceof LivingEntity entity) {
+            if(entity.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof HemalurgicSpikeItem spike) {
+                if(event.getEntityLiving() instanceof ServerPlayer player) {
                     spike.onPlayerKill(player, entity.getItemInHand(InteractionHand.MAIN_HAND));
+                } else if(event.getEntityLiving() instanceof AbstractIllager) {
+                    spike.onEntityKill(event.getEntityLiving(), entity.getItemInHand(InteractionHand.MAIN_HAND));
                 }
             }
         }
+
+
     }
 
     @SubscribeEvent

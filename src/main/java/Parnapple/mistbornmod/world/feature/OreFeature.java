@@ -18,7 +18,7 @@ import java.util.List;
 
 public enum OreFeature {
     TIN("tin_ore", 20, 10, 80, 0, ModBlocks.TIN_ORE.get(), ModBlocks.DEEPSLATE_TIN_ORE.get()),
-    ZINC("zinc_ore", 8, 30, 60, -20, ModBlocks.ZINC_ORE.get(), ModBlocks.DEEPSLATE_ZINC_ORE.get()),
+    ZINC("zinc_ore", 8, 20, 60, -20, ModBlocks.ZINC_ORE.get(), ModBlocks.DEEPSLATE_ZINC_ORE.get()),
     CADMIUM("cadmium_ore", 5, 20, 20, -64, ModBlocks.CADMIUM_ORE.get(), ModBlocks.DEEPSLATE_CADMIUM_ORE.get()),
     CHROMIUM("chromium_ore", 9, 20, 20, -50, ModBlocks.CHROMIUM_ORE.get(), ModBlocks.DEEPSLATE_CHROMIUM_ORE.get()),
     ALUMINUM("aluminum_ore", 5, 50, 200, 50, List.of(

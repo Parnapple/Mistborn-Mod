@@ -423,7 +423,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> METAL_HAMMER = ITEMS.register("metal_hammer",
             () -> new MetalShapingHammerItem(
-                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(1).durability(128)));
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(1).durability(512)));
 
     public static final RegistryObject<Item> ALUMINUM_SPIKE = ITEMS.register("aluminum_spike",
             () -> new HemalurgicSpikeItem(Metal.ALUMINUM));

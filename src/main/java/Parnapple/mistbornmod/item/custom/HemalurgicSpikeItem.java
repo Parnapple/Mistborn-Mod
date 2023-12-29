@@ -3,6 +3,7 @@ package Parnapple.mistbornmod.item.custom;
 import Parnapple.mistbornmod.capability.ModCapabilities;
 import Parnapple.mistbornmod.capability.allomancy.IAllomancerData;
 import Parnapple.mistbornmod.capability.feruchemy.IFeruchemistData;
+import Parnapple.mistbornmod.entity.custom.MistagerPewterEntity;
 import Parnapple.mistbornmod.item.ModCreativeModeTab;
 import Parnapple.mistbornmod.util.Metal;
 import com.google.common.collect.Sets;
@@ -14,6 +15,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -40,6 +43,10 @@ public class HemalurgicSpikeItem extends SwordItem {
 
     public void onPlayerKill(Player player, ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
+        if(tag.contains("power")) {
+            return;
+        }
+
         if(this.metal.equals(Metal.ALUMINUM)) {
             player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(IAllomancerData::removeAllPowers);
             player.getCapability(ModCapabilities.FERUCHEMY_INSTANCE).ifPresent(IFeruchemistData::removeAllPowers);
@@ -221,6 +228,90 @@ public class HemalurgicSpikeItem extends SwordItem {
             });
         }
 
+
+
+    }
+
+    public void onEntityKill(LivingEntity entity, ItemStack stack) {
+        CompoundTag tag = stack.getOrCreateTag();
+        if(tag.contains("power")) {
+            return;
+        }
+
+
+        if(entity instanceof MistagerPewterEntity && this.metal.equals(Metal.STEEL)) {
+            tag.putString("power", Power.Allomantic_Pewter.name());
+        }
+
+        if(entity instanceof Evoker && entity.getRandom().nextInt(100) < 7) {
+            if (this.metal.equals(Metal.PEWTER)) {
+
+                Set<Metal> options = Sets.newHashSet(Metal.TIN, Metal.PEWTER, Metal.IRON, Metal.STEEL);
+
+                for (Metal option : options) {
+                    if (option.equals(Metal.TIN))
+                        tag.putString("power", Power.Feruchemic_Tin.name());
+                    else if (option.equals(Metal.PEWTER))
+                        tag.putString("power", Power.Feruchemic_Pewter.name());
+                    else if (option.equals(Metal.STEEL))
+                        tag.putString("power", Power.Feruchemic_Steel.name());
+                    else if (option.equals(Metal.IRON))
+                        tag.putString("power", Power.Feruchemic_Iron.name());
+
+                    break;
+                }
+            }
+            else if(this.metal.equals(Metal.BRASS)) {
+
+                Set<Metal> options = Sets.newHashSet(Metal.ZINC, Metal.COPPER, Metal.BRASS, Metal.BRONZE);
+
+                for(Metal option: options) {
+
+                    if(option.equals(Metal.ZINC))
+                        tag.putString("power", Power.Feruchemic_Zinc.name());
+                    else if(option.equals(Metal.COPPER))
+                        tag.putString("power", Power.Feruchemic_Copper.name());
+                    else if(option.equals(Metal.BRASS))
+                        tag.putString("power", Power.Feruchemic_Brass.name());
+                    else if(option.equals(Metal.BRONZE))
+                        tag.putString("power", Power.Feruchemic_Bronze.name());
+                    break;
+                }
+            }
+            else if(this.metal.equals(Metal.GOLD)) {
+                Set<Metal> options = Sets.newHashSet(Metal.GOLD, Metal.ELECTRUM, Metal.CADMIUM, Metal.BENDALLOY);
+
+                for(Metal option: options) {
+                    if(option.equals(Metal.GOLD))
+                        tag.putString("power", Power.Feruchemic_Gold.name());
+                    else if(option.equals(Metal.ELECTRUM))
+                        tag.putString("power", Power.Feruchemic_Electrum.name());
+                    else if(option.equals(Metal.CADMIUM))
+                        tag.putString("power", Power.Feruchemic_Cadmium.name());
+                    else if(option.equals(Metal.BENDALLOY))
+                        tag.putString("power", Power.Feruchemic_Bendalloy.name());
+
+                    break;
+                }
+            }
+            else if(this.metal.equals(Metal.BENDALLOY)) {
+                Set<Metal> options = Sets.newHashSet(Metal.CHROMIUM, Metal.NICROSIL, Metal.ALUMINUM, Metal.DURALUMIN);
+
+                for(Metal option: options) {
+                    if(option.equals(Metal.CHROMIUM))
+                        tag.putString("power", Power.Feruchemic_Chromium.name());
+                    else if(option.equals(Metal.NICROSIL))
+                        tag.putString("power", Power.Feruchemic_Nicrosil.name());
+                    else if(option.equals(Metal.ALUMINUM))
+                        tag.putString("power", Power.Feruchemic_Aluminum.name());
+                    else if(option.equals(Metal.DURALUMIN))
+                        tag.putString("power", Power.Feruchemic_Duralumin.name());
+
+                    break;
+                }
+            }
+
+        } // Evokers have a 28% chance of being a feruchemist, so if you use a random one of the four spikes for stealing feruchemy, you have a 7% chance of steeling their power
 
 
     }
