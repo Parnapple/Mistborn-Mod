@@ -1,12 +1,16 @@
 package Parnapple.mistbornmod.screen;
 
+import Parnapple.mistbornmod.client.ClientAllomancyData;
 import Parnapple.mistbornmod.network.C2SBurnUpdatePacket;
 import Parnapple.mistbornmod.network.ModPackets;
+import Parnapple.mistbornmod.screen.button.PlainTextImageButton;
 import Parnapple.mistbornmod.util.Metal;
 import Parnapple.mistbornmod.util.keys.ModKeyMappings;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +27,7 @@ public class AllomancyScreen extends Screen {
     protected void init() {
         super.init();
 
-        for(Metal mt: Metal.values()) {
+        for(Metal mt: ClientAllomancyData.getPowers()) {
             ResourceLocation texture = new ResourceLocation("mistbornmod","textures/gui/buttons/"+ mt.getName() +"_button.png");
             int value = mt.ordinal() + 1;
             int centerX = width/2;
@@ -50,11 +54,14 @@ public class AllomancyScreen extends Screen {
                 y = centerY + 36;
             }
 
-            ImageButton button = new ImageButton(x, y, 64, 32,0, 0,32,
+            Component label =  new TranslatableComponent("mistbornmod.metals." + mt.getName());
+
+            PlainTextImageButton button = new PlainTextImageButton(x, y, 64, 32,0, 0,32,
                     texture, 64, 64, btn -> ModPackets.sendToServer(new C2SBurnUpdatePacket(mt, hasControlDown() || hasAltDown())),
-                    new TranslatableComponent("mistbornmod.metals." + mt.getName()));
+                    label);
 
             this.addRenderableWidget(button);
+
         }
 
     }

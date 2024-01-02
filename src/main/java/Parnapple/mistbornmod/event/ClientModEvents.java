@@ -10,6 +10,7 @@ import Parnapple.mistbornmod.screen.MetallurgyFurnaceScreen;
 import Parnapple.mistbornmod.MistbornBaseMod;
 import Parnapple.mistbornmod.util.Metal;
 import Parnapple.mistbornmod.util.keys.ModKeyMappings;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.gui.screens.Screen;
@@ -40,7 +41,16 @@ public class ClientModEvents {
                     ModPackets.sendToServer(new C2SBurnUpdatePacket(ClientAllomancyData.getPowers()[0], Screen.hasControlDown() || Screen.hasAltDown()));
                 }
             }
-            if(ClientAllomancyData.isBurning(Metal.IRON) || ClientAllomancyData.isBurning(Metal.STEEL)) {
+
+            for(int i = 0; i < ModKeyMappings.metals.length; i++) {
+                KeyMapping key = ModKeyMappings.metals[i];
+
+                if(key.consumeClick() && ClientAllomancyData.hasPower(Metal.getMetal(i))) {
+                    ModPackets.sendToServer(new C2SBurnUpdatePacket(ClientAllomancyData.getPowers()[i], Screen.hasControlDown() || Screen.hasAltDown()));
+                }
+            }
+
+            if((ClientAllomancyData.isBurning(Metal.IRON) || ClientAllomancyData.isBurning(Metal.STEEL)) && ModKeyMappings.pushPullKey.isDown()) {
                 Metal burning = ClientAllomancyData.isBurning(Metal.STEEL) ? Metal.STEEL : Metal.IRON;
                 if(mc.options.keyUp.isDown()) {
                     ModPackets.sendToServer(new C2SPushPullPacket(C2SPushPullPacket.Dir.FORWARD, burning));

@@ -63,6 +63,12 @@ Duralumin/Nicrosil boosting
 ~~~~~~~~~~~~~~~~~~~
 If you burn duralumin or are hit by someone burning nicrosil, all of your metals will be dramatically enhanced. This can have unexpected effects.
 
+Steel Pushing & Iron Pulling
+~~~~~~~~~~~~~~~~~~~
+If you are burning iron/steel and move around while holding the alt key(or whatever key you set it to), you will pull/push off of nearby metal sources.
+Burning steel while left-clicking with a nugget shoots the nugget as a projectile. If you're sneaking, you'll shoot a handful of coins
+Right-clicking with iron allows you to pull metal items out of entities hands
+
 
 Hemallurgy
 

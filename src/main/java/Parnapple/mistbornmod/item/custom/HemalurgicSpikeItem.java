@@ -243,7 +243,7 @@ public class HemalurgicSpikeItem extends SwordItem {
             tag.putString("power", Power.Allomantic_Pewter.name());
         }
 
-        if(entity instanceof Evoker && entity.getRandom().nextInt(100) < 7) {
+        if(entity instanceof Evoker && entity.getRandom().nextInt(100) <= 7) {
             if (this.metal.equals(Metal.PEWTER)) {
 
                 Set<Metal> options = Sets.newHashSet(Metal.TIN, Metal.PEWTER, Metal.IRON, Metal.STEEL);
