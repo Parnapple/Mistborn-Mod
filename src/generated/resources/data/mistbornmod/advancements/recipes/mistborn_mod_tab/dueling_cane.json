@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mistbornmod:dueling_cane"
+    ]
+  },
+  "criteria": {
+    "has_material": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:string"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mistbornmod:dueling_cane"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_material",
+      "has_the_recipe"
+    ]
+  ]
+}

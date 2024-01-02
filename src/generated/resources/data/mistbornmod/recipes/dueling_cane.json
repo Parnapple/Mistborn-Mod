@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W ",
+    " W ",
+    "WHS"
+  ],
+  "key": {
+    "H": {
+      "tag": "forge:rods/wooden"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "mistbornmod:dueling_cane"
+  }
+}

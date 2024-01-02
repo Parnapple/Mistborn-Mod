@@ -5,18 +5,24 @@ import Parnapple.mistbornmod.entity.CoinProjectileEntity;
 import Parnapple.mistbornmod.util.Metal;
 import Parnapple.mistbornmod.util.MetalUtil;
 import Parnapple.mistbornmod.util.ModTags;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkEvent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class C2SPushPullPacket {
@@ -83,6 +89,15 @@ public class C2SPushPullPacket {
                     move(player, player.getForward().reverse().multiply(power, 0, power));
                 }
 
+//                if(this.direction.equals(Dir.UP) && this.burning.equals(Metal.STEEL)) {
+//                    List<BlockPos> anchors = getMetalNearPlayer(player, range, Dir.DOWN);
+//                    for(BlockPos anchor: anchors) {
+//                        move(player, vecBtwnPts(anchor.offset(.5, .5, .5), player.getOnPos()).multiply(power, power, power));
+////                        player.displayClientMessage(new TextComponent(anchor.toString()), false);
+//                    }
+////                    player.displayClientMessage(new TextComponent("Pushing Up"), false);
+//                }
+
                 player.move(MoverType.PLAYER, player.getDeltaMovement());
 
                 player.fallDistance  = 0;
@@ -97,6 +112,38 @@ public class C2SPushPullPacket {
         player.setDeltaMovement(movement.add(player.getDeltaMovement()));
         player.hurtMarked = true;
         player.fallDistance  = 0;
+    }
+
+    private List<BlockPos> getMetalNearPlayer(ServerPlayer player, int range, Dir direction) {
+        Level level = player.level;
+        AABB boundingBox = player.getBoundingBox().inflate(range);
+        Vec3 move;
+        if(direction.equals(Dir.DOWN)) {
+            move = new Vec3(0, -range, 0);
+        } else if(direction.equals(Dir.UP)) {
+            move = new Vec3(0, range, 0);
+        }  else if(direction.equals(Dir.FORWARD)) {
+            move = player.getForward().multiply(range, 0, range);
+        } else if(direction.equals(Dir.BACKWARD)) {
+            move = player.getForward().multiply(-range, 0, -range);
+        } else if(direction.equals(Dir.RIGHT)) {
+            double x = player.getForward().x;
+            double z = player.getForward().z;
+            move = player.getForward().with(Direction.Axis.Z, x * range).with(Direction.Axis.X, -range * z);
+        } else if(direction.equals(Dir.LEFT)) {
+            double x = player.getForward().x;
+            double z = player.getForward().z;
+            move = player.getForward().with(Direction.Axis.Z, -x * range).with(Direction.Axis.X, range * z);
+        } else {
+            move = new Vec3(0, 0, 0);
+        }
+
+        boundingBox = boundingBox.move(move);
+        List<BlockPos> blocks = BlockPos.betweenClosedStream(boundingBox).filter(pos -> MetalUtil.isBlockMetal(level.getBlockState(pos).getBlock())).toList();
+
+        List<BlockPos> entities = level.getEntitiesOfClass(Entity.class, boundingBox).stream().filter(MetalUtil::isEntityMetal).filter(entity -> !entity.equals(player)).map(Entity::getOnPos).toList();
+
+        return blocks;
     }
 
     private boolean metalNearPlayer(ServerPlayer player, int range, Dir direction) {
@@ -125,11 +172,10 @@ public class C2SPushPullPacket {
         }
 
         boundingBox = boundingBox.move(move);
-
         boolean result = level.getBlockStates(boundingBox).filter(state -> MetalUtil.isBlockMetal(state.getBlock())).toArray().length > 0;
 
         if(!result) {
-            result = level.getEntitiesOfClass(Entity.class, boundingBox).stream().filter(MetalUtil::isEntityMetal).toList().size() > 0;
+            result = level.getEntitiesOfClass(Entity.class, boundingBox).stream().filter(MetalUtil::isEntityMetal).filter(entity -> !entity.equals(player)).toArray().length > 0;
         }
 
 //        if(!result && this.burning == Metal.STEEL) {
@@ -152,5 +198,15 @@ public class C2SPushPullPacket {
 
         return result;
     }
+
+    private Vec3 vecBtwnPts(BlockPos pos1, BlockPos pos2) {
+        Vec3 vec = new Vec3(pos2.getX()-pos1.getX(), pos2.getY()-pos1.getY(), pos2.getZ()-pos1.getZ());
+
+        double magnitude = Math.sqrt(vec.x()*vec.x() + vec.y()*vec.y() + vec.z()*vec.z());
+        vec = vec.multiply(1/magnitude, 1/magnitude, 1/magnitude);
+
+        return vec;
+    }
+
 
 }

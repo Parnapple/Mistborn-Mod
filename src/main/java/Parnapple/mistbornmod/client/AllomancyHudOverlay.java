@@ -71,13 +71,13 @@ public class AllomancyHudOverlay {
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                 RenderSystem.setShaderTexture(0, resourceLocation);
-                for(int i = 0; i < ClientAllomancyData.get(mt) / 250; i++) {
+                for(int i = 0; i < ClientAllomancyData.get(mt) / 500; i++) {
                     GuiComponent.blit(poseStack, (x-(width/2)) +  10 + (mt.ordinal()*5), y - (i*2), 0, 0, 4, 4, 4, 4);
                 }
 
                 RenderSystem.setShaderTexture(0, ClientAllomancyData.isFlaring(mt) ? FLARING: BURNING);
                 if(ClientAllomancyData.isBurning(mt)) {
-                    GuiComponent.blit(poseStack, (x-(width/2)) +  10 + (mt.ordinal()*5), y - ((ClientAllomancyData.get(mt) / 250) * 2), 0, 0, 4, 4, 4, 4);
+                    GuiComponent.blit(poseStack, (x-(width/2)) +  10 + (mt.ordinal()*5), y - ((ClientAllomancyData.get(mt) / 500) * 2), 0, 0, 4, 4, 4, 4);
                 }
         }
 

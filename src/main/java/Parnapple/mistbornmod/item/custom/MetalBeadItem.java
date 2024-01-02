@@ -36,7 +36,7 @@ public class MetalBeadItem extends Item {
                 if(store < 16000) {
                     data.setStore(this.metal, store + 1000);
                     stack.shrink(1);
-                    pLevel.playSound(player, player.blockPosition(), SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 10, 100);
+//                    pLevel.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.DOLPHIN_EAT, SoundSource.PLAYERS, 100, 100, false);
                     ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(this.metal, data.getStore(metal), data.isBurning(metal), data.isFlaring(metal)), player);
                 }
             });
