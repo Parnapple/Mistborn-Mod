@@ -1,5 +1,6 @@
 package Parnapple.mistbornmod.entity;
 
+import Parnapple.mistbornmod.entity.custom.MistagerSteelEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -52,6 +53,9 @@ public class CoinProjectileEntity extends AbstractArrow implements ItemSupplier 
         float damage = Mth.randomBetweenInclusive(this.random, 5, 10);
 
         Entity ownerEntity = this.getOwner();
+        if(ownerEntity instanceof MistagerSteelEntity) {
+            damage = 5;
+        }
         DamageSource damagesource = allomancy(this, ownerEntity == null ? this : ownerEntity);
 //        DamageSource damagesource = DamageSource.trident(this, ownerEntity == null ? this : ownerEntity);
         SoundEvent soundevent = SoundEvents.CHAIN_BREAK;

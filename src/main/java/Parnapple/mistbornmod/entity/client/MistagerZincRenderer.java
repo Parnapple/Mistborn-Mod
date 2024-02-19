@@ -1,0 +1,25 @@
+package Parnapple.mistbornmod.entity.client;
+
+import Parnapple.mistbornmod.MistbornBaseMod;
+import Parnapple.mistbornmod.entity.custom.MistagerBrassEntity;
+import Parnapple.mistbornmod.entity.custom.MistagerZincEntity;
+import net.minecraft.client.model.IllagerModel;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.IllagerRenderer;
+import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
+import net.minecraft.resources.ResourceLocation;
+
+public class MistagerZincRenderer extends IllagerRenderer<MistagerZincEntity> {
+    private static final ResourceLocation MISTAGER_ZINC = new ResourceLocation(MistbornBaseMod.MOD_ID, "textures/entity/mistager_zinc.png");
+
+    public MistagerZincRenderer(EntityRendererProvider.Context p_174354_) {
+        super(p_174354_, new IllagerModel<>(p_174354_.bakeLayer(ModelLayers.EVOKER)), 0.5F);
+        this.addLayer(new ItemInHandLayer<>(this));
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(MistagerZincEntity pEntity) {
+        return MISTAGER_ZINC;
+    }
+}

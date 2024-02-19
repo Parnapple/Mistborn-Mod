@@ -27,7 +27,18 @@ import java.util.function.Supplier;
 
 public class C2SPushPullPacket {
     public enum Dir{
-        UP, DOWN, LEFT, RIGHT, FORWARD, BACKWARD
+        UP, DOWN, LEFT, RIGHT, FORWARD, BACKWARD;
+
+        public Dir reverse(Dir dir) {
+            return switch (dir) {
+                case UP -> DOWN;
+                case DOWN -> UP;
+                case LEFT -> RIGHT;
+                case RIGHT -> LEFT;
+                case FORWARD -> BACKWARD;
+                case BACKWARD -> FORWARD;
+            };
+        }
     }
 
     private final Dir direction;
@@ -91,11 +102,16 @@ public class C2SPushPullPacket {
 
 //                if(this.direction.equals(Dir.UP) && this.burning.equals(Metal.STEEL)) {
 //                    List<BlockPos> anchors = getMetalNearPlayer(player, range, Dir.DOWN);
-//                    for(BlockPos anchor: anchors) {
-//                        move(player, vecBtwnPts(anchor.offset(.5, .5, .5), player.getOnPos()).multiply(power, power, power));
-////                        player.displayClientMessage(new TextComponent(anchor.toString()), false);
+//                    if(anchors.size() == 0) {
+//                        return;
 //                    }
-////                    player.displayClientMessage(new TextComponent("Pushing Up"), false);
+////                    player.displayClientMessage(new TextComponent(anchors.toString()), false);
+//
+//                    for(BlockPos anchor: anchors) {
+//                        Vec3 move = player.position().subtract(Vec3.atCenterOf(anchor)).normalize().scale(power);
+//                        move(player, move);
+//                    }
+//
 //                }
 
                 player.move(MoverType.PLAYER, player.getDeltaMovement());
@@ -198,15 +214,5 @@ public class C2SPushPullPacket {
 
         return result;
     }
-
-    private Vec3 vecBtwnPts(BlockPos pos1, BlockPos pos2) {
-        Vec3 vec = new Vec3(pos2.getX()-pos1.getX(), pos2.getY()-pos1.getY(), pos2.getZ()-pos1.getZ());
-
-        double magnitude = Math.sqrt(vec.x()*vec.x() + vec.y()*vec.y() + vec.z()*vec.z());
-        vec = vec.multiply(1/magnitude, 1/magnitude, 1/magnitude);
-
-        return vec;
-    }
-
 
 }

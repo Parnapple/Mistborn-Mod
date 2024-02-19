@@ -6,6 +6,10 @@ import Parnapple.mistbornmod.command.AllomancyCommand;
 import Parnapple.mistbornmod.command.FeruchemyCommand;
 import Parnapple.mistbornmod.effect.ModEffects;
 import Parnapple.mistbornmod.entity.CoinProjectileEntity;
+import Parnapple.mistbornmod.entity.ModEntities;
+import Parnapple.mistbornmod.entity.custom.Mistager;
+import Parnapple.mistbornmod.entity.custom.MistagerChromiumEntity;
+import Parnapple.mistbornmod.entity.custom.MistagerCopperEntity;
 import Parnapple.mistbornmod.item.custom.HemalurgicSpikeItem;
 import Parnapple.mistbornmod.network.ModPackets;
 import Parnapple.mistbornmod.network.S2CSyncAllomancerDataPacket;
@@ -16,6 +20,8 @@ import com.google.common.collect.Sets;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -25,10 +31,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.animal.*;
@@ -37,7 +40,11 @@ import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.NaturalSpawner;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
@@ -193,6 +200,7 @@ public class ModEvents {
                     data.setEnhanced(true);
                 }
 
+                boolean isBurning = false;
 
                 for(Metal mt: Metal.values()) {
                     if(data.isBurning(mt)) {
@@ -200,6 +208,7 @@ public class ModEvents {
                             data.toggleBurn(mt);
                             data.setEnhanced(false);
                         } else {
+                            isBurning = true;
                             int burnPower = data.isFlaring(mt) ? 2 : 1;
                             if(data.isEnhanced()) {
                                 burnPower = 20;
@@ -211,6 +220,13 @@ public class ModEvents {
                         ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(mt, data.getStore(mt), data.isBurning(mt), data.isFlaring(mt)), (ServerPlayer) player);
                     } else {
                         data.toggleFlaring(mt, false);
+                    }
+                }
+
+                if(isBurning && player.tickCount % 6000 == 0 && !data.isBurning(Metal.COPPER) && level.getRandom().nextInt(4) == 0) {
+                    if(level instanceof ServerLevel serverLevel) {
+//                        player.displayClientMessage(new TextComponent("Spawning mistager patrol"), false);
+                        spawnMistagerPatrol(serverLevel, player, player.getRandom());
                     }
                 }
 
@@ -249,6 +265,9 @@ public class ModEvents {
                         strength = 15;
                     }
                     for(PathfinderMob entity: level.getEntitiesOfClass(PathfinderMob.class, player.getBoundingBox().inflate(strength))) {
+                        if(entity instanceof MistagerCopperEntity smoker && smoker.isBurning()) {
+                            return;
+                        }
 
                         entity.goalSelector.getRunningGoals().filter(ModEvents::isAggressiveGoal).forEach(WrappedGoal::stop);
                         entity.targetSelector.getRunningGoals().filter(ModEvents::isAggressiveGoal).forEach(WrappedGoal::stop);
@@ -276,6 +295,10 @@ public class ModEvents {
                         strength = 40;
                     }
                     for(PathfinderMob entity: level.getEntitiesOfClass(PathfinderMob.class, player.getBoundingBox().inflate(strength))) {
+                        if(entity instanceof MistagerCopperEntity smoker && smoker.isBurning()) {
+                            return;
+                        }
+
                         Random random = new Random();
 
                         if(entity.isNoAi()) {
@@ -443,6 +466,13 @@ public class ModEvents {
                         });
                     }
 
+                    List<Mistager> mistagers = level.getEntitiesOfClass(Mistager.class, player.getBoundingBox().inflate(power));
+                    for(Mistager mistager: mistagers) {
+                        if(mistager.isBurning() && !mistager.isClouded()) {
+                            mistager.addEffect(new MobEffectInstance(MobEffects.GLOWING, 10));
+                        }
+                    }
+
                 }
 
                 if(data.isBurning(Metal.CHROMIUM) && data.isEnhanced()) {
@@ -457,6 +487,13 @@ public class ModEvents {
                                 }
                             }
                         });
+                    }
+
+                    List<Mistager> mistagers = level.getEntitiesOfClass(Mistager.class, player.getBoundingBox().inflate(range));
+
+                    for(Mistager mistager: mistagers) {
+                        mistager.clearMetals();
+                        mistager.setEatBeadCooldown(250);
                     }
 
                 }
@@ -476,6 +513,9 @@ public class ModEvents {
                                 otherData.setStore(mt, 0);
                             }
                         });
+                    } else if(event.getEntityLiving() instanceof Mistager mistager) {
+                        mistager.clearMetals();
+                        mistager.setEatBeadCooldown(250);
                     }
                 }
                 if(data.isBurning(Metal.NICROSIL)) {
@@ -488,6 +528,16 @@ public class ModEvents {
                     }
                 }
             });
+        }
+        else if(event.getSource().getEntity() instanceof MistagerChromiumEntity mistager && event.getEntityLiving() instanceof Player player) {
+            if(mistager.isBurning()) {
+                player.getCapability(ModCapabilities.ALLOMANCY_INSTANCE).ifPresent(data -> {
+                    for(Metal mt: Metal.values()) {
+                        data.setStore(mt, 0);
+                        ModPackets.sendToPlayer(new S2CSyncAllomancerDataPacket(mt, data.getStore(mt), data.isBurning(mt), data.isFlaring(mt)), (ServerPlayer) player);
+                    }
+                });
+            }
         }
     }
 
@@ -522,7 +572,6 @@ public class ModEvents {
                 || goal.getClass().getName().contains("Shoot")
                 || goal.getClass().getName().contains("Spell");
     }
-
 
     private static double getAngleTo(Vec3 vec3, Entity entity) {
         return Math.atan2(vec3.z() - entity.getZ(), vec3.x() - entity.getX());
@@ -559,5 +608,110 @@ public class ModEvents {
         return angle;
     }
 
+    private static void spawnMistagerPatrol(ServerLevel pLevel, Player player, Random random) {
+        int k = (24 + random.nextInt(24)) * (random.nextBoolean() ? -1 : 1);
+        int l = (24 + random.nextInt(24)) * (random.nextBoolean() ? -1 : 1);
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = player.blockPosition().mutable().move(k, 0, l);
+        int i1 = 10;
+        if (!pLevel.hasChunksAt(blockpos$mutableblockpos.getX() - 10, blockpos$mutableblockpos.getZ() - 10, blockpos$mutableblockpos.getX() + 10, blockpos$mutableblockpos.getZ() + 10)) {
+            return;
+        } else {
+            Holder<Biome> holder = pLevel.getBiome(blockpos$mutableblockpos);
+            Biome.BiomeCategory biome$biomecategory = Biome.getBiomeCategory(holder);
+            if (biome$biomecategory == Biome.BiomeCategory.MUSHROOM) {
+                return;
+            } else {
+//                int k1 = (int)Math.ceil((double)pLevel.getCurrentDifficultyAt(blockpos$mutableblockpos).getEffectiveDifficulty()) + 1;
+
+                blockpos$mutableblockpos.setY(pLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, blockpos$mutableblockpos).getY());
+
+                spawnPatrolMember(pLevel, blockpos$mutableblockpos, random, ModEntities.MISTAGER_BRONZE.get());
+
+                blockpos$mutableblockpos.setX(blockpos$mutableblockpos.getX() + random.nextInt(5) - random.nextInt(5));
+                blockpos$mutableblockpos.setZ(blockpos$mutableblockpos.getZ() + random.nextInt(5) - random.nextInt(5));
+
+                for(int i = 0; i < random.nextInt(1, 4); i++) {
+                    spawnPatrolMember(pLevel, blockpos$mutableblockpos, random, ModEntities.MISTAGER_PEWTER.get());
+
+                    blockpos$mutableblockpos.setX(blockpos$mutableblockpos.getX() + random.nextInt(5) - random.nextInt(5));
+                    blockpos$mutableblockpos.setZ(blockpos$mutableblockpos.getZ() + random.nextInt(5) - random.nextInt(5));
+                }
+
+                for(int i = 0; i < random.nextInt(0, 4); i++) {
+                    spawnPatrolMember(pLevel, blockpos$mutableblockpos, random, ModEntities.MISTAGER_TIN.get());
+
+                    blockpos$mutableblockpos.setX(blockpos$mutableblockpos.getX() + random.nextInt(5) - random.nextInt(5));
+                    blockpos$mutableblockpos.setZ(blockpos$mutableblockpos.getZ() + random.nextInt(5) - random.nextInt(5));
+                }
+
+                for(int i = 0; i < random.nextInt(1, 3); i++) {
+                    spawnPatrolMember(pLevel, blockpos$mutableblockpos, random, ModEntities.MISTAGER_STEEL.get());
+
+                    blockpos$mutableblockpos.setX(blockpos$mutableblockpos.getX() + random.nextInt(5) - random.nextInt(5));
+                    blockpos$mutableblockpos.setZ(blockpos$mutableblockpos.getZ() + random.nextInt(5) - random.nextInt(5));
+                }
+
+                for(int i = 0; i < random.nextInt(0, 3); i++) {
+                    spawnPatrolMember(pLevel, blockpos$mutableblockpos, random, ModEntities.MISTAGER_IRON.get());
+
+                    blockpos$mutableblockpos.setX(blockpos$mutableblockpos.getX() + random.nextInt(5) - random.nextInt(5));
+                    blockpos$mutableblockpos.setZ(blockpos$mutableblockpos.getZ() + random.nextInt(5) - random.nextInt(5));
+                }
+
+                for(int i = 0; i < random.nextInt(0, 2); i++) {
+                    spawnPatrolMember(pLevel, blockpos$mutableblockpos, random, ModEntities.MISTAGER_ZINC.get());
+
+                    blockpos$mutableblockpos.setX(blockpos$mutableblockpos.getX() + random.nextInt(5) - random.nextInt(5));
+                    blockpos$mutableblockpos.setZ(blockpos$mutableblockpos.getZ() + random.nextInt(5) - random.nextInt(5));
+                }
+
+                for(int i = 0; i < random.nextInt(0, 2); i++) {
+                    spawnPatrolMember(pLevel, blockpos$mutableblockpos, random, ModEntities.MISTAGER_BRASS.get());
+
+                    blockpos$mutableblockpos.setX(blockpos$mutableblockpos.getX() + random.nextInt(5) - random.nextInt(5));
+                    blockpos$mutableblockpos.setZ(blockpos$mutableblockpos.getZ() + random.nextInt(5) - random.nextInt(5));
+                }
+
+                for(int i = 0; i < random.nextInt(0, 2); i++) {
+                    spawnPatrolMember(pLevel, blockpos$mutableblockpos, random, ModEntities.MISTAGER_COPPER.get());
+
+                    blockpos$mutableblockpos.setX(blockpos$mutableblockpos.getX() + random.nextInt(5) - random.nextInt(5));
+                    blockpos$mutableblockpos.setZ(blockpos$mutableblockpos.getZ() + random.nextInt(5) - random.nextInt(5));
+                }
+
+                for(int i = 0; i < random.nextInt(0, 2); i++) {
+                    spawnPatrolMember(pLevel, blockpos$mutableblockpos, random, ModEntities.MISTAGER_CHROMIUM.get());
+
+                    blockpos$mutableblockpos.setX(blockpos$mutableblockpos.getX() + random.nextInt(5) - random.nextInt(5));
+                    blockpos$mutableblockpos.setZ(blockpos$mutableblockpos.getZ() + random.nextInt(5) - random.nextInt(5));
+                }
+
+
+
+            }
+
+//                return;
+            }
+    }
+
+    private static boolean spawnPatrolMember(ServerLevel pLevel, BlockPos pPos, Random pRandom, EntityType<? extends PatrollingMonster> type) {
+        BlockState blockstate = pLevel.getBlockState(pPos);
+        if (!NaturalSpawner.isValidEmptySpawnBlock(pLevel, pPos, blockstate, blockstate.getFluidState(), EntityType.PILLAGER)) {
+            return false;
+        } else if (!PatrollingMonster.checkPatrollingMonsterSpawnRules(EntityType.PILLAGER, pLevel, MobSpawnType.PATROL, pPos, pRandom)) {
+            return false;
+        } else {
+            PatrollingMonster mistager = type.create(pLevel);
+            if (mistager != null) {
+                mistager.setPos((double)pPos.getX(), (double)pPos.getY(), (double)pPos.getZ());
+                if(net.minecraftforge.common.ForgeHooks.canEntitySpawn(mistager, pLevel, pPos.getX(), pPos.getY(), pPos.getZ(), null, MobSpawnType.PATROL) == -1) return false;
+                mistager.finalizeSpawn(pLevel, pLevel.getCurrentDifficultyAt(pPos), MobSpawnType.PATROL, (SpawnGroupData)null, (CompoundTag)null);
+                pLevel.addFreshEntityWithPassengers(mistager);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 
 }

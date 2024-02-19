@@ -46,7 +46,7 @@ public class ClientModEvents {
                 KeyMapping key = ModKeyMappings.metals[i];
 
                 if(key.consumeClick() && ClientAllomancyData.hasPower(Metal.getMetal(i))) {
-                    ModPackets.sendToServer(new C2SBurnUpdatePacket(ClientAllomancyData.getPowers()[i], Screen.hasControlDown() || Screen.hasAltDown()));
+                    ModPackets.sendToServer(new C2SBurnUpdatePacket(Metal.getMetal(i), Screen.hasControlDown() || Screen.hasAltDown()));
                 }
             }
 

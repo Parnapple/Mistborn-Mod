@@ -137,6 +137,14 @@
   "item.mistbornmod.metal_hammer": "Metal Shaping Hammer",
   "item.mistbornmod.coin_pouch": "Coin Pouch",
   "item.mistbornmod.mistager_pewter_spawn_egg": "Illager Thug Spawn Egg",
+  "item.mistbornmod.mistager_tin_spawn_egg": "Illager Tineye Spawn Egg",
+  "item.mistbornmod.mistager_brass_spawn_egg": "Illager Soother Spawn Egg",
+  "item.mistbornmod.mistager_zinc_spawn_egg": "Illager Rioter Spawn Egg",
+  "item.mistbornmod.mistager_chromium_spawn_egg": "Illager Leecher Spawn Egg",
+  "item.mistbornmod.mistager_copper_spawn_egg": "Illager Smoker Spawn Egg",
+  "item.mistbornmod.mistager_bronze_spawn_egg": "Illager Seeker Spawn Egg",
+  "item.mistbornmod.mistager_iron_spawn_egg": "Illager Lurcher Spawn Egg",
+  "item.mistbornmod.mistager_steel_spawn_egg": "Illager Coinshot Spawn Egg",
 
   "block.mistbornmod.tin_block": "Tin Block",
   "block.mistbornmod.tin_ore": "Tin Ore",
@@ -176,6 +184,14 @@
 
   "entity.mistbornmod.coin_projectile": "Flying Coin",
   "entity.mistbornmod.mistager_pewter": "Illager Thug",
+  "entity.mistbornmod.mistager_tin": "Illager Tineye",
+  "entity.mistbornmod.mistager_brass": "Illager Soother",
+  "entity.mistbornmod.mistager_zinc": "Illager Rioter",
+  "entity.mistbornmod.mistager_chromium": "Illager Leecher",
+  "entity.mistbornmod.mistager_copper": "Illager Smoker",
+  "entity.mistbornmod.mistager_bronze": "Illager Seeker",
+  "entity.mistbornmod.mistager_iron": "Illager Lurcher",
+  "entity.mistbornmod.mistager_steel": "Illager Coinshot",
 
   "itemGroup.mistborn_mod_tab": "Mistborn Base Mod",
 
