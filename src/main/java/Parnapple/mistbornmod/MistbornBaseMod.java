@@ -4,7 +4,7 @@ import Parnapple.mistbornmod.block.ModBlocks;
 import Parnapple.mistbornmod.block.container.ModContainers;
 import Parnapple.mistbornmod.crafting.ModRecipeSerializers;
 import Parnapple.mistbornmod.entity.ModEntities;
-import Parnapple.mistbornmod.entity.client.MistagerPewterRenderer;
+import Parnapple.mistbornmod.entity.client.*;
 import Parnapple.mistbornmod.event.ModCapEvents;
 import Parnapple.mistbornmod.block.entity.ModBlockEntityTypes;
 import Parnapple.mistbornmod.capability.ModCapabilities;
@@ -90,6 +90,14 @@ public class MistbornBaseMod
 
     private void clientSetup(final FMLClientSetupEvent event) {
         EntityRenderers.register(ModEntities.MISTAGER_PEWTER.get(), MistagerPewterRenderer::new);
+        EntityRenderers.register(ModEntities.MISTAGER_TIN.get(), MistagerTinRenderer::new);
+        EntityRenderers.register(ModEntities.MISTAGER_BRASS.get(), MistagerBrassRenderer::new);
+        EntityRenderers.register(ModEntities.MISTAGER_ZINC.get(), MistagerZincRenderer::new);
+        EntityRenderers.register(ModEntities.MISTAGER_CHROMIUM.get(), MistagerChromiumRenderer::new);
+        EntityRenderers.register(ModEntities.MISTAGER_COPPER.get(), MistagerCopperRenderer::new);
+        EntityRenderers.register(ModEntities.MISTAGER_BRONZE.get(), MistagerBronzeRenderer::new);
+        EntityRenderers.register(ModEntities.MISTAGER_IRON.get(), MistagerIronRenderer::new);
+        EntityRenderers.register(ModEntities.MISTAGER_STEEL.get(), MistagerSteelRenderer::new);
     }
 
 

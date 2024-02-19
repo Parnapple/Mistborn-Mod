@@ -51,13 +51,17 @@ public class C2SIronPullEntitiesPacket {
                 for(LivingEntity entity: entities) {
                     ItemStack item = entity.getItemInHand(InteractionHand.MAIN_HAND);
                     if(MetalUtil.isItemMetal(item.getItem()) && !entity.equals(player)) {
-                        ItemEntity itemEntity = new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), item.copy());
+                        ItemStack stack = item.copy();
+                        stack.setCount(1);
+                        ItemEntity itemEntity = new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), stack);
                         item.shrink(1);
                         level.addFreshEntity(itemEntity);
                     }
                     item = entity.getItemInHand(InteractionHand.OFF_HAND);
                     if(MetalUtil.isItemMetal(item.getItem()) && !entity.equals(player)) {
-                        ItemEntity itemEntity = new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), item.copy());
+                        ItemStack stack = item.copy();
+                        stack.setCount(1);
+                        ItemEntity itemEntity = new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), stack);
                         item.shrink(1);
                         level.addFreshEntity(itemEntity);
                     }

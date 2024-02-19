@@ -3,7 +3,7 @@ package Parnapple.mistbornmod.event;
 import Parnapple.mistbornmod.crafting.MetallurgyRecipe;
 import Parnapple.mistbornmod.MistbornBaseMod;
 import Parnapple.mistbornmod.entity.ModEntities;
-import Parnapple.mistbornmod.entity.custom.MistagerPewterEntity;
+import Parnapple.mistbornmod.entity.custom.*;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.event.RegistryEvent;
@@ -22,5 +22,13 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event) {
         event.put(ModEntities.MISTAGER_PEWTER.get(), MistagerPewterEntity.setAttributes());
+        event.put(ModEntities.MISTAGER_TIN.get(), MistagerTinEntity.setAttributes());
+        event.put(ModEntities.MISTAGER_BRASS.get(), MistagerBrassEntity.setAttributes());
+        event.put(ModEntities.MISTAGER_ZINC.get(), MistagerZincEntity.setAttributes());
+        event.put(ModEntities.MISTAGER_CHROMIUM.get(), MistagerChromiumEntity.setAttributes());
+        event.put(ModEntities.MISTAGER_COPPER.get(), MistagerCopperEntity.setAttributes());
+        event.put(ModEntities.MISTAGER_BRONZE.get(), MistagerBronzeEntity.setAttributes());
+        event.put(ModEntities.MISTAGER_IRON.get(), MistagerIronEntity.setAttributes());
+        event.put(ModEntities.MISTAGER_STEEL.get(), MistagerSteelEntity.setAttributes());
     }
 }

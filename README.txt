@@ -71,7 +71,49 @@ Right-clicking with iron allows you to pull metal items out of entities hands
 
 
 Hemallurgy
-
 **************
 
-Spikes can be crafted from various metals. Each type of spike steals a different allomantic or feruchemic power when you kill a player with it. The powers that can be stolen with each type of spike are accurate with the books. Using an Invested (meaning it has been used to steal someone's power) spike grants you that power.Currently, no other attributes (like strength, identity, etc.) can be stolen with spikes. Eventually I might make this system better.
+Spikes can be crafted from various metals. Each type of spike steals a different allomantic or feruchemic power when you kill a player with it. The powers that can be stolen with each type of spike are accurate with the books. Using an Invested (meaning it has been used to steal someone's power) spike grants you that power. Currently, no other attributes (like strength, identity, etc.) can be stolen with spikes. Eventually I might make this system better.
+Evokers occasionally have feruchemy, so killing them with the right type of spike might allow you to steal a feruchemal ability
+Hemalurgy also works on mistagers
+
+
+Mistagers
+**************
+Occasionally, if you burn metals without burning copper, groups of mistager illagers can spawn to attack you. A trick for fighting them is to wipe away their metals by burning chromium while attacking them.
+
+Thugs (Pewter)
+~~~~~~~~~~~~~~~~~~~~
+They burn pewter when attacking for enhanced strength and speed
+
+Tineyes (Tin)
+~~~~~~~~~~~~~~~~~~~~
+They wield crossbows and shoot from a long range using their tin-enhanced senses
+
+Leechers (Chromium)
+~~~~~~~~~~~~~~~~~~~~
+They attack you with glass/obsidian daggers while also leeching your metal reserves using chromium
+
+Soothers (Brass)
+~~~~~~~~~~~~~~~~~~~~
+They soothe you, making you slower and weaker
+
+Rioters (Zinc)
+~~~~~~~~~~~~~~~~~~~~
+They riot entities (including passive mobs) around you to make them attack you.
+
+Smokers (Copper)
+~~~~~~~~~~~~~~~~~~~~
+They burn copper to create a coppercloud around nearby mistagers so you can't detect them by burning bronze
+
+Seekers (Bronze)
+~~~~~~~~~~~~~~~~~~~~
+They burn bronze to alert nearby illagers of your presence if you are burning metals without a coppercloud. This makes them target you from further away, even if you're invisible.
+
+Lurchers (Iron)
+~~~~~~~~~~~~~~~~~~~
+They ironpull on any metal items in your hands and ironpull you to them if you're wearing metal armor. They also pull nearby metal nugget projectiles towards the ground
+
+Coinshots (Steel)
+~~~~~~~~~~~~~~~~~~~
+They shoot metal nuggets at you and push away metal nuggets you shoot at them. They also push metal items out of your hands. They also push on you if you're wearing metal armor and get too close

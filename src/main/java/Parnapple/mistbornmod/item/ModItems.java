@@ -462,7 +462,39 @@ public class ModItems {
             () -> new SwordItem(ModItemTier.HARDWOOD, 5, 1.0f, new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
 
     public static final RegistryObject<Item> MISTAGER_PEWTER_SPAWN_EGG = ITEMS.register("mistager_pewter_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_PEWTER,5451574, 0x37573c,
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_PEWTER,0x545756, 0x98a6aa,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> MISTAGER_TIN_SPAWN_EGG = ITEMS.register("mistager_tin_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_TIN,0x545756, 0xa7a7a7,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> MISTAGER_BRASS_SPAWN_EGG = ITEMS.register("mistager_brass_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_BRASS,0x545756, 0xc3a322,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> MISTAGER_ZINC_SPAWN_EGG = ITEMS.register("mistager_zinc_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_ZINC,0x545756, 0x878787,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> MISTAGER_CHROMIUM_SPAWN_EGG = ITEMS.register("mistager_chromium_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_CHROMIUM,0x545756, 0xe7e7e7,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> MISTAGER_COPPER_SPAWN_EGG = ITEMS.register("mistager_copper_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_COPPER,0x545756, 0x9c4e31,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> MISTAGER_BRONZE_SPAWN_EGG = ITEMS.register("mistager_bronze_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_BRONZE,0x545756, 0xc37022,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> MISTAGER_IRON_SPAWN_EGG = ITEMS.register("mistager_iron_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_IRON,0x545756, 0xd8d8d8,
+                    new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
+
+    public static final RegistryObject<Item> MISTAGER_STEEL_SPAWN_EGG = ITEMS.register("mistager_steel_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.MISTAGER_STEEL,0x545756, 0xebebeb,
                     new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB)));
 
     public static void register(IEventBus eventBus) {

@@ -3,7 +3,7 @@ package Parnapple.mistbornmod.item.custom;
 import Parnapple.mistbornmod.capability.ModCapabilities;
 import Parnapple.mistbornmod.capability.allomancy.IAllomancerData;
 import Parnapple.mistbornmod.capability.feruchemy.IFeruchemistData;
-import Parnapple.mistbornmod.entity.custom.MistagerPewterEntity;
+import Parnapple.mistbornmod.entity.custom.*;
 import Parnapple.mistbornmod.item.ModCreativeModeTab;
 import Parnapple.mistbornmod.util.Metal;
 import com.google.common.collect.Sets;
@@ -20,6 +20,7 @@ import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
@@ -37,7 +38,7 @@ public class HemalurgicSpikeItem extends SwordItem {
     public Metal metal;
 
     public HemalurgicSpikeItem(Metal metal) {
-        super(Tiers.STONE, 2, 2.0F, new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(1).durability(64));
+        super(Tiers.STONE, 2, 1.0F, new Item.Properties().tab(ModCreativeModeTab.MISTBORN_TAB).stacksTo(1).durability(64));
         this.metal = metal;
     }
 
@@ -238,12 +239,46 @@ public class HemalurgicSpikeItem extends SwordItem {
             return;
         }
 
-
-        if(entity instanceof MistagerPewterEntity && this.metal.equals(Metal.STEEL)) {
-            tag.putString("power", Power.Allomantic_Pewter.name());
+        if(entity instanceof Mistager) {
+            if(this.metal.equals(Metal.STEEL)) {
+                if(entity instanceof MistagerPewterEntity) {
+                    tag.putString("power", Power.Allomantic_Pewter.name());
+                }
+                else if(entity instanceof MistagerTinEntity) {
+                    tag.putString("power", Power.Allomantic_Tin.name());
+                }
+                else if(entity instanceof MistagerIronEntity) {
+                    tag.putString("power", Power.Allomantic_Iron.name());
+                }
+                else if(entity instanceof MistagerSteelEntity) {
+                    tag.putString("power", Power.Allomantic_Steel.name());
+                }
+            }
+            else if(this.metal.equals(Metal.BRONZE)) {
+                if(entity instanceof MistagerBrassEntity) {
+                    tag.putString("power", Power.Allomantic_Brass.name());
+                }
+                else if(entity instanceof MistagerZincEntity) {
+                    tag.putString("power", Power.Allomantic_Zinc.name());
+                }
+                else if(entity instanceof MistagerCopperEntity) {
+                    tag.putString("power", Power.Allomantic_Copper.name());
+                }
+                else if(entity instanceof MistagerBronzeEntity) {
+                    tag.putString("power", Power.Allomantic_Bronze.name());
+                }
+            }
+            else if(this.metal.equals(Metal.ELECTRUM)) {
+                if(entity instanceof MistagerChromiumEntity) {
+                    tag.putString("power", Power.Allomantic_Chromium.name());
+                }
+            }
         }
 
-        if(entity instanceof Evoker && entity.getRandom().nextInt(100) <= 7) {
+
+
+
+        else if(entity instanceof Evoker && entity.getRandom().nextInt(100) <= 7) {
             if (this.metal.equals(Metal.PEWTER)) {
 
                 Set<Metal> options = Sets.newHashSet(Metal.TIN, Metal.PEWTER, Metal.IRON, Metal.STEEL);
@@ -364,4 +399,14 @@ public class HemalurgicSpikeItem extends SwordItem {
         }
         return super.isFoil(pStack);
     }
+
+    @Override
+    public boolean canPerformAction(ItemStack stack, net.minecraftforge.common.ToolAction toolAction) {
+        if(toolAction.equals(ToolActions.SWORD_SWEEP)) {
+            return false;
+        }
+
+        return net.minecraftforge.common.ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction);
+    }
+
 }
